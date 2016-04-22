@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+  <head>
+    <title>AngularJS App Base</title>
+    <meta charset="utf-8">
+    <!-- base href for Angular (HTML5 mode) -->
+    <base href="/">
+    <!-- meta tag for bootstrap (mobile devices) -->
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- JS libs -->
+    <script src="libs/jquery.min.js"></script>
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-touch.min.js"></script>
+    <script src="libs/angular-route.min.js"></script>
+    <script src="libs/angular-resource.min.js"></script>
+    <script src="libs/ui-bootstrap-tpls.min.js"></script>
+
+    <!-- our JS -->
+    <script src="app.js"></script>
+
+    <!-- all CSS -->
+    <link rel="stylesheet" href="css/all.css">
+  </head>
+  <body>
+    <!-- just testing that the app works -->
+    <form novalidate name="testForm">
+      <div class="form-group">
+        <label>Input text</label>
+        <input
+        type="text"
+        name="testInput"
+        class="form-control"
+        placeholder="Something..."
+        ng-model="test"
+        >
+      </div>
+    </form>
+    <h2>The input contains:</h2>
+    <p>{{test}}</p>
+  </body>
+</html>
