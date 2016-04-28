@@ -8,9 +8,16 @@ module.exports = function(mongoose){
     price: {type: Number, required: true},
     type: {type: String, required: true},
     description: {type: String, required: false}
-    
+
     // a relation
     // doneBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  });
+
+  schema.pre('update', function(next) {
+    // tell mongoose to run validators before every "update"
+    // on this schema
+    this.options.runValidators = true;
+    next();
   });
 
   // Return the model
