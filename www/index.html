@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
   <head>
-    <title>AngularJS App Base</title>
+    <title>Dyhr-Rumson</title>
     <meta charset="utf-8">
     <!-- base href for Angular (HTML5 mode) -->
     <base href="/">
@@ -24,20 +24,6 @@
     <link rel="stylesheet" href="css/all.css">
   </head>
   <body>
-    <!-- just testing that the app works -->
-    <form novalidate name="testForm">
-      <div class="form-group">
-        <label>Input text</label>
-        <input
-        type="text"
-        name="testInput"
-        class="form-control"
-        placeholder="Something..."
-        ng-model="test"
-        >
-      </div>
-    </form>
-    <h2>The input contains:</h2>
-    <p>{{test}}</p>
+    <ng-view></ng-view>
   </body>
 </html>
