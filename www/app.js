@@ -13,7 +13,21 @@ app.config(["$locationProvider", "$routeProvider", function ($locationProvider, 
 	.when("/", {
 		templateUrl: "/template/home.html"
 	})
+	.when("/buy", {
+		templateUrl: "/template/buy.html"
+	})
+	.when("/sell", {
+		templateUrl: "/template/sell.html"
+	})
+	.when("/contact", {
+		templateUrl: "/template/contact.html"
+	})
+	.when("/about", {
+		templateUrl: "/template/about.html"
+	})
 	.otherwise({
 		templateUrl: "/template/404.html"
 	})
+
+	$locationProvider.html5Mode(true);
 }]);

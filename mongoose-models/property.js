@@ -13,7 +13,7 @@ module.exports = function(mongoose){
     // doneBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
   });
 
-  schema.pre('update', function(next) {
+  PropertySchema.pre('update', function(next) {
     // tell mongoose to run validators before every "update"
     // on this schema
     this.options.runValidators = true;
