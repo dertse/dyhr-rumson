@@ -11,11 +11,11 @@ app.directive('mainContent', [function(){
         {
           title: 'Well 2',
           content: 'Morbi nibh dui, porttitor vel sagittis vel, porttitor nec dolor. Duis cursus porttitor neque, sagittis scelerisque est commodo quis.'
-        }/*,
+        },
         {
           title: 'Well 3',
           content: 'Pellentesque a bibendum nisi. In dignissim est tortor, vitae iaculis nunc gravida et. Mauris venenatis libero eget risus sollicitudin euismod ut sed mi.'
-        }*/
+        }
       ];
 
       // make all wells fit on a single row

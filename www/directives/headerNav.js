@@ -30,15 +30,6 @@ app.directive('headerNav', [function(){
       $scope.currentUrl = function() {
         return $location.url();
       }
-      
-      function currentTime() {
-        $scope.currentTime = new Date();
-      }
-      currentTime();
-      // update currentTime every 1 second
-      // if we don't use angulars $interval
-      // $scope wont realize that there is an updated value!
-      $interval(currentTime, 1000);
     }]
   };
 }]);
