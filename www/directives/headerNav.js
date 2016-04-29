@@ -1,5 +1,5 @@
 app.directive('headerNav', [function(){
-/*
+
   return {
     templateUrl: '/directives/headerNav.html',
     controller: ['$scope', '$interval', function($scope, $interval) {
@@ -13,5 +13,5 @@ app.directive('headerNav', [function(){
       // $scope wont realize that there is an updated value!
       $interval(currentTime, 1000);
     }]
-  };*/
+  };
 }]);
