@@ -11,22 +11,22 @@ app.config(["$locationProvider", "$routeProvider", function ($locationProvider, 
 
 	$routeProvider
 	.when("/", {
-		templateUrl: "/template/home.html"
+		templateUrl: "/templates/home.html",
 	})
 	.when("/buy", {
-		templateUrl: "/template/buy.html"
+		templateUrl: "/templates/buy.html"
 	})
 	.when("/sell", {
-		templateUrl: "/template/sell.html"
+		templateUrl: "/templates/sell.html"
 	})
 	.when("/contact", {
-		templateUrl: "/template/contact.html"
+		templateUrl: "/templates/contact.html"
 	})
 	.when("/about", {
-		templateUrl: "/template/about.html"
+		templateUrl: "/templates/about.html"
 	})
 	.otherwise({
-		templateUrl: "/template/404.html"
+		templateUrl: "/templates/404.html"
 	})
 
 	$locationProvider.html5Mode(true);
