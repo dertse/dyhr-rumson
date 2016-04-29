@@ -19,12 +19,24 @@
     <!-- our JS -->
     <script src="app.js"></script>
     <script src="/api/ngresources/app"></script>
+    
+    
+    <script src="/directives/headerNav.js"></script>
+    <script src="/directives/mainContent.js"></script>
 
     <!-- all CSS -->
     <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- Extra style -->
+
+    <!-- Custom styles for this template -->
+    <link href="css/starter-template.css" rel="stylesheet">
+
   </head>
   <body>
-    
-    <ng-view></ng-view>
+
+    <!-- Ng-View -->
+    <!-- <ng-view></ng-view> -->
+    <div ng-view></div> <!-- Nu använder vi directives istället -->
+
   </body>
 </html>

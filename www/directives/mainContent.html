@@ -1,0 +1,12 @@
+<!-- new .container > .row to have columns within columns -->
+<!-- must use container-fluid as we are inside a .container already -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-{{colSize}}" ng-repeat="well in wells">
+      <div class="well">
+        <h3>{{well.title}}</h3>
+        <p>{{well.content}}</p>
+      </div>
+    </div>
+  </div>
+</div>
