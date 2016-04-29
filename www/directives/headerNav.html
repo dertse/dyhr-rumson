@@ -10,12 +10,9 @@
       <a class="navbar-brand" href="/">DHYR-RUMSON</a>
     </div>
     <div id="navbar" class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="/">HEM</a></li>
-        <li><a ng-href="/buy">KÖPA</a></li>
-        <li><a ng-href="/sell">SÄLJA</a></li>
-        <li><a ng-href="/about">OM</a></li>
-        <li><a ng-href="/contact">KONTAKT</a></li>
+      <ul class="nav navbar-nav" ng-repeat="link in links">
+
+        <li ng-class="link.url == currentUrl() ? 'active' : ''"><a ng-href="{{link.url}}">{{link.title}}</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
