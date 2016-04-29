@@ -11,7 +11,7 @@ app.config(["$locationProvider", "$routeProvider", function($locationProvider, $
 
 	$routeProvider
 	.when("/", {
-		templateUrl: "/templates/home.html"
+		templateUrl: "/templates/home.html",
 	})
 	.when("/buy", {
 		templateUrl: "/templates/buy.html"
