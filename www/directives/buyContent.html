@@ -1,0 +1,45 @@
+
+<div class="starter-template">
+  <h1>KÖPA</h1>
+  <p class="lead"><a ng-href="/sell">eller sälj ditt gamla</a></p>
+</div>
+
+<div class="col-xs-24 col-md-16 makeShadowBorder">
+  <h1>Lägenheter</h1>
+  <div ng-model="newApartments">
+    <div ng-repeat="apartment in apartments">
+      <div class="list-group">
+        <p class="list-group-item active">
+          <span>
+              {{apartment.description}}     <span class="badge"> {{apartment.adress}} </span>  
+              </span>
+          </span>
+        </p>
+        <a ng-href="" class="list-group-item">
+          <span><!-- FIX - En extra span fixade så att badge stannade bredvid sin text -->
+            <b>Rum:</b> <span class="badge"> {{apartment.room}}</span><br>
+            <b>Antal Kvm:</b> <span class="badge">{{apartment.size}}</span><br>
+            <b>Pris:</b> <span class="badge"> {{apartment.price}}</span><br>
+            <b>Typ:</b> <span class="badge"> {{apartment.type}}</span><br>
+          </span>
+          <img ng-src="{{apartment.pic}}" style="width:50%; display: block; margin-left: auto;  margin-right: auto"></img>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-24 col-md-8">
+  <h1>Sök bland allt som finns</h1>
+  <form class="navbar-form" role="search">
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Lägenhet, Villa, Hus">
+    </div>
+    <button type="submit" class="btn btn-success">Sök</button>
+  </form>
+  <input ng-model="showThis" type="checkbox"> Fler alternativ<br>
+  <div ng-show="showThis">
+    <h3>Lägenheter:</h3>
+    <p>Lite Text</p>
+  </div>
+</div>

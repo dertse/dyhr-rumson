@@ -11,10 +11,13 @@ app.config(["$locationProvider", "$routeProvider", function($locationProvider, $
 
 	$routeProvider
 	.when("/", {
-		templateUrl: "/templates/home.html",
+		templateUrl: "/templates/home.html"
 	})
 	.when("/buy", {
 		templateUrl: "/templates/buy.html"
+	})
+	.when("/buy/aa", {
+		templateUrl: "/templates/buyDetailContent.html"
 	})
 	.when("/sell", {
 		templateUrl: "/templates/sell.html"
@@ -27,7 +30,7 @@ app.config(["$locationProvider", "$routeProvider", function($locationProvider, $
 	})
 	.otherwise({
 		templateUrl: "/templates/404.html"
-	})
+	});
 
 	$locationProvider.html5Mode(true);
 }]);
