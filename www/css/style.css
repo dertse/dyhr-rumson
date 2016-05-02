@@ -28,6 +28,10 @@ h1{
 	text-shadow: 1px 2px 2px gray;
 }
 
+p{
+	font-size: 1.3em;
+}
+
 
 button{
 	color: gray;
@@ -50,22 +54,46 @@ button{
 	transition: 0.6s ease-in-out;
 }
 
+
+.navbar-inverse .navbar-brand {
+    color: #000;
+}
+
+/*denna skapar en snygg box med skugga*/
 .makeShadowBorder {
+	margin-bottom: 1em;
+	padding: 1em;
 	border: 1px solid #9c9c9c;
 	box-shadow: 5px 5px 10px #000;
 	border-radius: 0.8em;
 
 }
 
-.navbar-inverse .navbar-brand {
-    color: #000;
+
+}
+/*-------------------------------------------------*/
+/* KÖPA */
+
+/*dkontrollera dessa -- dem funkar inte som dem ska?!?!? */
+.badge{
+     font-size: 2em;
+}
+
+/* badge - info rutor */
+.badge{
+	font-size: 1.2em;
+	font-family: Thin;
+	
+}
+
+div.buyGallery img{
+	
+    width: 100%;
+	border-radius: 50px;
+    border: 2px solid #337AB7;
 }
 
 /* text till visning av hus/lägenheter */
 .list-group-item.active {
 	font-size: 1.3em;
-}
-
-.badge{
-	font-size: 1.1em;
 }

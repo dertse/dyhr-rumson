@@ -1,45 +1,207 @@
-
 <div class="starter-template">
   <h1>KÖPA</h1>
   <p class="lead"><a ng-href="/sell">eller sälj ditt gamla</a></p>
+  <button ng-click="postThis();">POST</button>
 </div>
 
-<div class="col-xs-24 col-md-16 makeShadowBorder">
+
+
+
+
+
+<div class="col-xs-24 col-md-11 col-md-offset-1 makeShadowBorder">
+<h1>Detaljerad sökning</h1>
+  <p>
+
+    <!-- här ligger knappar som visar och bytar ut "showProperties" -->
+    <button ng-click="showProperties=false" id="showPropertyButton" class="btn btn-primary btn-lg btn-block">Jag söker Hus/Villa 
+      <span class="pull-right"><span class="badge" style="text-align: right;"> {{properties.length}}</span> Lediga </span>
+    </button>
+    <button ng-click="showProperties=true" id="showApartmentButton" class="btn btn-default btn-lg btn-block">Jag söker lägenhet
+      <span class="pull-right"><span class="badge"> {{apartments.length}}</span> Lediga </span>
+    </button><br>
+      <div>
+        <span class="glyphicon glyphicon-eye-open"> </span> <input ng-model="showDetilSearch" type="checkbox"> Fler sökalternativ
+      </div>
+  </p>
+
+
+
+
+  <!-- mySearchControl som kollar efter ändringar i sökningen -->
+  <div id="mySearchControl">
+    <div ng-show="showDetilSearch">
+
+      <div class="col-xs-12 col-md-12">
+        <div class="row">
+          <h3>Rum</h3>
+          <select class="form-control" id="valueRoom">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="5"> < 5</option>
+          </select>
+        </div>
+      </div><!-- .col -->
+
+    <div class="col-xs-12 col-md-11 col-md-offset-1">
+      <div class="row">
+        <h3>Yta</h3>
+        <select class="form-control" id="valueSize">
+          <option>0 - 20 kvm</option>
+          <option>20 - 30 kvm</option>
+          <option>30 - 40 kvm</option>
+          <option>40 - 50 kvm</option>
+          <option>50 - 100 kvm</option>
+          <option> < 100 kvm</option>
+        </select>
+      </div>
+    </div><!-- .col -->
+
+      <div class="col-xs-24 col-md-24">
+        <div class="row">
+          <h3>Pris</h3>
+          <select class="form-control" id="valuePrice">
+            <option>Alla Priser</option>
+            <option>0 - 1,000,000</option>
+            <option>1,000,000 - 3,000,000</option>
+            <option>3,000,000 - 5,000,000</option>
+            <option>5,000,000 - 10,000,000</option>
+            <option> < 10,000,000 </option>
+          </select>
+        </div><br>
+
+
+        <!-- 
+          Grabbar alla värde som sen ska söka & filtrera mot DB
+          t.ex (room: "newSearchRoom" && $gt: "newSearchSize")
+        -->
+
+
+        <div><h3>Dina valda kreterier:</h3> <br>
+          <span>
+             Rum : <span class="badge" id="searchRoom"> - </span>
+              Kvm : <span class="badge" id="searchSize"> - </span> 
+              SEK : <span class="badge" id="searchPrice"> - </span>
+              <p id="extraInfo"></p>
+          </span>
+        </div>
+      </div><!-- .col --> 
+
+
+
+
+    </div><!-- .col Detaljerad sökning-->  
+  </div><!-- mySearchControl -->
+
+
+
+
+
+  <!-- jssor -->
+<div class="col-xs-24 col-md-24 col-md-offset-0">
+    <!-- Galleri Div -->
+    <div class="buyGallery" style="padding-left: 0%;">
+      <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden; visibility: hidden;">
+        <!-- Loading Screen -->
+        <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
+          <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+          <div style="position:absolute;display:block;background:url('../css/jssor/loading.gif') no-repeat center center;top:0px;left:0px;width:100%;height:100%;"></div>
+        </div>
+        <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 600px; height: 300px; overflow: hidden;">
+          <div data-p="112.50" style="display: none;">
+              <img data-u="image" data-title="Hejsan" src="../img/Bild3.jpg" />
+          </div>
+          <div data-p="112.50" style="display: none;">
+              <img data-u="image" src="../img/Bild2.jpg" />
+          </div>
+          <div data-p="112.50" style="display: none;">
+              <img data-u="image" src="../img/Bild4.jpg" />
+          </div>
+          <div data-p="112.50" style="display: none;">
+              <img data-u="image" src="../img/Bild1.jpg" />
+          </div>
+        </div>
+        <!-- Bullet Navigator -->
+        <div data-u="navigator" class="jssorb05" style="bottom:16px;right:16px;" data-autocenter="1">
+          <!-- bullet navigator item prototype -->
+          <div data-u="prototype" style="width:16px;height:16px;"></div>
+        </div>
+        <!-- Arrow Navigator -->
+        <span data-u="arrowleft" class="jssora12l" style="top:0px;left:0px;width:30px;height:46px;" data-autocenter="2"></span>
+        <span data-u="arrowright" class="jssora12r" style="top:0px;right:0px;width:30px;height:46px;" data-autocenter="2"></span>
+      </div>
+      <!--startar galleriet -->
+      <script>
+        jssor_1_slider_init();
+      </script>
+    </div>
+</div><!-- mainContent -->
+
+
+
+
+
+
+
+
+
+
+</div><!-- Main-col -->
+
+
+
+
+
+
+<!-- mainContent med alla våra villor och lägenheter // ng-model="buyContent" property stuff-->
+<div class="col-xs-24 col-md-11 col-md-offset-1 makeShadowBorder">
+  <!-- properties -->
+  <div ng-hide="showProperties">
+  <h1>Hus & Villor</h1>
+    <div ng-repeat="property in properties">
+      <div class="list-group">
+        <p class="list-group-item active">
+          <span> {{property.adress}} </span>
+        </p>
+        <a ng-href="/" class="list-group-item">
+          <span><!-- FIX - En extra span fixade så att badge stannade bredvid sin text -->
+            <b>Rum:</b> <span class="badge"> {{property.room}}</span>
+            <b>Antal Kvm:</b> <span class="badge">{{property.size}}</span>
+            <b>Pris:</b> <span class="badge"> {{property.price}}<br></span><hr></p>
+            <p>{{property.description}}<p>
+          </span>
+          <div class="buyGallery">
+            <img src="{{property.pic}}"><br>
+          </div>
+        </a>
+      </div><!-- list-group -->
+    </div><!-- ng-repeat -->
+  </div><!-- ng-hide -->
+
+
+  <!-- apartments -->
+  <div ng-show="showProperties">
   <h1>Lägenheter</h1>
-  <div ng-model="newApartments">
     <div ng-repeat="apartment in apartments">
       <div class="list-group">
         <p class="list-group-item active">
-          <span>
-              {{apartment.description}}     <span class="badge"> {{apartment.adress}} </span>  
-              </span>
-          </span>
+          <span> {{apartment.adress}}</span>
         </p>
-        <a ng-href="" class="list-group-item">
+        <!-- här är min analysDiv som ska ta bort den tom´ma diven i apartments view -->
+        <a ng-href="/" class="list-group-item" id="analysDiv"> 
           <span><!-- FIX - En extra span fixade så att badge stannade bredvid sin text -->
-            <b>Rum:</b> <span class="badge"> {{apartment.room}}</span><br>
-            <b>Antal Kvm:</b> <span class="badge">{{apartment.size}}</span><br>
-            <b>Pris:</b> <span class="badge"> {{apartment.price}}</span><br>
-            <b>Typ:</b> <span class="badge"> {{apartment.type}}</span><br>
+            <b>Rum:</b> <span class="badge"> {{apartment.room}}</span>
+            <b>Antal Kvm:</b> <span class="badge">{{apartment.size}}</span>
+            <b>Pris:</b> <span class="badge"> {{apartment.price}}<br></span><hr>
+            <p>{{apartment.description}}<p>
           </span>
-          <img ng-src="{{apartment.pic}}" style="width:50%; display: block; margin-left: auto;  margin-right: auto"></img>
+          <div class="buyGallery">
+            <!-- <img src="{{apartment.pic}}"><br> -->
+          </div>
         </a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-xs-24 col-md-8">
-  <h1>Sök bland allt som finns</h1>
-  <form class="navbar-form" role="search">
-    <div class="form-group">
-      <input type="text" class="form-control" placeholder="Lägenhet, Villa, Hus">
-    </div>
-    <button type="submit" class="btn btn-success">Sök</button>
-  </form>
-  <input ng-model="showThis" type="checkbox"> Fler alternativ<br>
-  <div ng-show="showThis">
-    <h3>Lägenheter:</h3>
-    <p>Lite Text</p>
-  </div>
-</div>
+      </div><!-- list-group -->
+    </div><!-- ng-repeat -->
+  </div><!-- ng-show -->
