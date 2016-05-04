@@ -11,13 +11,12 @@
 <div class="col-xs-24 col-md-11 col-md-offset-1 makeShadowBorder">
 <h1>Detaljerad sökning</h1>
   <p>
-
     <!-- här ligger knappar som visar och bytar ut "showProperties" -->
-    <button ng-click="showProperties=false" id="showPropertyButton" class="btn btn-primary btn-lg btn-block">Jag söker Hus/Villa 
-      <span class="pull-right"><span class="badge" style="text-align: right;"> {{properties.length}}</span> Lediga </span>
+    <button ng-click="" class="btn btn-primary btn-lg btn-block">Jag söker Hus/Villa 
+      <span class="pull-right"><span class="badge" style="text-align: right;" id="antalVillor"> </span> Lediga </span>
     </button>
-    <button ng-click="showProperties=true" id="showApartmentButton" class="btn btn-default btn-lg btn-block">Jag söker lägenhet
-      <span class="pull-right"><span class="badge"> {{apartments.length}}</span> Lediga </span>
+    <button ng-click="" class="btn btn-default btn-lg btn-block">Jag söker lägenhet
+      <span class="pull-right"><span class="badge" style="text-align: right;" id="antalLägenheter"> </span> Lediga </span>
     </button><br>
       <div>
         <span class="glyphicon glyphicon-eye-open"> </span> <input ng-model="showDetilSearch" type="checkbox"> Fler sökalternativ
@@ -158,49 +157,24 @@
 <!-- mainContent med alla våra villor och lägenheter // ng-model="buyContent" property stuff-->
 <div class="col-xs-24 col-md-11 col-md-offset-1 makeShadowBorder">
   <!-- properties -->
-  <div ng-hide="showProperties">
-  <h1>Hus & Villor</h1>
-    <div ng-repeat="property in allProperties">
-      <div class="list-group">
-        <p class="list-group-item active">
-          <span> {{property.adress}} </span>
-        </p>
-        <a ng-href="/buy/{{property._id}}" class="list-group-item">
-          <span><!-- FIX - En extra span fixade så att badge stannade bredvid sin text -->
-            <b>Rum:</b> <span class="badge"> {{property.room}}</span>
-            <b>Antal Kvm:</b> <span class="badge">{{property.size}}</span>
-            <b>Pris:</b> <span class="badge"> {{property.price}}<br></span><hr></p>
-            <p>{{property.description}}<p>
-          </span>
-          <div class="buyGallery">
-            <img ng-src="{{property.pic}}"><br>
-          </div>
-        </a>
-      </div><!-- list-group -->
-    </div><!-- ng-repeat -->
-  </div><!-- ng-hide -->
-
-
-  <!-- apartments -->
-  <div ng-show="showProperties">
-  <h1>Lägenheter</h1>
-    <div ng-repeat="apartment in allApartments">
-      <div class="list-group">
-        <p class="list-group-item active">
-          <span> {{apartment.adress}}</span>
-        </p>
-        <!-- här är min analysDiv som ska ta bort den tom´ma diven i apartments view -->
-        <a ng-href="/" class="list-group-item" id="analysDiv"> 
-          <span><!-- FIX - En extra span fixade så att badge stannade bredvid sin text -->
-            <b>Rum:</b> <span class="badge"> {{apartment.room}}</span>
-            <b>Antal Kvm:</b> <span class="badge">{{apartment.size}}</span>
-            <b>Pris:</b> <span class="badge"> {{apartment.price}}<br></span><hr>
-            <p>{{apartment.description}}<p>
-          </span>
-          <div class="buyGallery">
-            <!-- <img src="{{apartment.pic}}"><br> -->
-          </div>
-        </a>
-      </div><!-- list-group -->
-    </div><!-- ng-repeat -->
-  </div><!-- ng-show -->
+<h1>Hus & Villor</h1>
+  <div ng-repeat="property in properties">
+    <div class="list-group">
+      <p class="list-group-item active">
+        <span><b>{{property.type}}</b> - {{property.adress}} </span> 
+      </p>
+      <a ng-href="/buy/{{property._id}}" class="list-group-item">
+        <span><!-- FIX - En extra span fixade så att badge stannade bredvid sin text -->
+          <b>Rum:</b> <span class="badge"> {{property.room}}</span>
+          <b>Antal Kvm:</b> <span class="badge">{{property.size}}</span>
+          <b>Pris:</b> <span class="badge"> {{property.price}}<br></span><hr></p>
+          <p>{{property.description}}<p>
+        </span>
+        <div class="buyGallery">
+          <img ng-src="{{property.pic}}"><br>
+        </div>
+        <i> <b>ID: </b>  {{property._id}}</i>
+      </a>
+    </div><!-- list-group -->
+  </div><!-- ng-repeat -->
+</div><!-- ng-hide -->

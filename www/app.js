@@ -17,7 +17,7 @@ app.config(["$locationProvider", "$routeProvider", function($locationProvider, $
 		templateUrl: "/templates/buy.html"
 	})
 	.when("/buy/:id", {
-		templateUrl: "/templates/buyDetailContent.html"
+		templateUrl: "/templates/buyDetailView.html"
 	})
 	.when("/sell", {
 		templateUrl: "/templates/sell.html"

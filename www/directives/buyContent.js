@@ -2,36 +2,128 @@ app.directive('buyContent', [function() {
 	
 	return {
 		templateUrl: '/directives/buyContent.html',
-		controller: ['$scope','$location','$routeParams','Property', 'Apartment', function($scope,$location,$routeParams, Property, Apartment){
-
-
-/*
-////////// - Queries til mongoDB  
-//--------------  Sortera efter pris : 100000
-
-> db.getCollection('properties').find({price:{$gt: 10000000}})
-
-// In angulaar
-// Show everything less than 2 millions, sort from cheap to expensive
-Property.get({price:{$lte:2000000,_sort:{price:1}})
-
->> RESULTAT:   - Bodilsgatan
+		controller: ['$scope','$location','$routeParams','Property', function($scope,$location,$routeParams, Property){
 
 
 
-//--------------- Sortera efter antal rum : 4
 
-> db.getCollection('properties').find({room:4})
 
->> RESULTAT: - Dvärgvidegatan 1, Videdal
+	// Hämtar alla Properties från DB (including the new one)
+		$scope.properties = Property.get(function(info) 
+		{
+			$scope.properties = info;
 
-*/
+
+			var antalVillor = 0;
+			var antalLägenheter = 0;
+
+			for(var i = 0; i < $scope.properties.length; i++){
+				
+				console.log($scope.properties[i].type);
+				if ($scope.properties[i].type == "Villa") {
+					antalVillor++;
+				}
+				else if ($scope.properties[i].type == "Lägenhet") {
+					antalLägenheter++;
+				}
+
+			}
+			console.log("Du har ", antalVillor, "antal villor");
+			console.log("Du har ", antalLägenheter, "antal lägenheter");
+
+			$('#antalVillor').html(antalVillor);
+			$('#antalLägenheter').html(antalLägenheter);
+		});
+
+
+
+
+
+
+
+		// så ska jag filtrera mina sökningar mot mongoDB i routen
+		/*{
+			$and: [
+				{room:8},
+				{size: {$gte:200,$lte:300}},
+				{price: {$lte:1000000,$gte:10000000}}
+			]
+
+
+
+		a = Property.get({
+			$and: [
+				{room:9},
+				{size: {$gte:200,$lte:350}},
+				{price: {$gte:1000000,$lte:13000000}}
+			]
+		});
+
+
+		}
+
+		window.Apartment = Apartment;
+    	window.Property = Property;
+ */
+
+
+			// Denna lyssnar efter ändringar i detalj-sökrutan
+
+			$('#mySearchControl').change(function() {
+				var room = $('#valueRoom option:selected').text();
+				var size = $('#valueSize option:selected').text();
+				var price = $('#valuePrice option:selected').text();
+
+				console.log("Nya värden\n\n" ,"Antal Rum : ", room ,"\n" ,"Storlek :" , size, "\n", "Pris : ", price, "\n");
+
+				// håller i nya och gamla värden
+				var searchRoom = room;
+				var searchSize = size;
+				var searchPrice = price;
+
+				$('#searchRoom').html(searchRoom);
+				$('#searchSize').html(searchSize);
+				$('#searchPrice').html(searchPrice);
+
+				if(searchPrice == " < 10,000,000 ")
+				{
+					$('#extraInfo').append("Hoppas du kan redovisa dem pengarna :P");
+				}
+				else
+				{
+					$('#extraInfo').text("");
+				}
+
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 	// Våra dummy Property
-	/*			
+/*			
 			$scope.properties = Property.create([{
 
 				adress: "Bodilsgatan 4A, Fridhem",
@@ -72,7 +164,7 @@ Property.get({price:{$lte:2000000,_sort:{price:1}})
 				pic:"img/bild1.jpg"
 
 			}];
-			*/
+*/
 
 
 
@@ -81,8 +173,8 @@ Property.get({price:{$lte:2000000,_sort:{price:1}})
 
 
 			// Våra dummy lägenheter
-		/*	
-			$scope.apartments = Apartment.create([{
+/*	
+			$scope.properties = Property.create([{
 				
 				adress: "Major-Nilsgatan 16, Segevång",
 				room: 3,
@@ -152,78 +244,15 @@ Property.get({price:{$lte:2000000,_sort:{price:1}})
 				pic:"img/bild2.jpg"
 
 			}]);
-
-
-
 */
 
 
-			// Denna lyssnar efter ändringar i detalj-sökrutan
-
-			$('#mySearchControl').change(function() {
-				var room = $('#valueRoom option:selected').text();
-				var size = $('#valueSize option:selected').text();
-				var price = $('#valuePrice option:selected').text();
-
-				console.log("Nya värden\n\n" ,"Antal Rum : ", room ,"\n" ,"Storlek :" , size, "\n", "Pris : ", price, "\n");
-
-				// håller i nya och gamla värden
-				var searchRoom = room;
-				var searchSize = size;
-				var searchPrice = price;
-
-				$('#searchRoom').html(searchRoom);
-				$('#searchSize').html(searchSize);
-				$('#searchPrice').html(searchPrice);
-
-				if(searchPrice == " < 10,000,000 "){
-					$('#extraInfo').append("Hoppas du kan redovisa dem pengarna :P");
-				}
-				else{
-					$('#extraInfo').text("");
-				}
-
-			});
-
-			/**/
-
-			// Get all persons (including the new one)
-    		$scope.allProperties = Property.get(function(){
-    			console.log("allProperies:", $scope.allProperties);
-    		});
+		
 
 
 
-			$scope.allApartments = Apartment.get(function(){
-    			console.log("allApartments:", $scope.allApartments);
-
-    			for(var i = 0; i < $scope.allApartments.length; i++){
-    				console.log(i , "Adress", $scope.allApartments[i].street);
-    			}
-    		});
-			
-
-			/*{
-				$and: [
-					{room:8},
-					{size: {$gte:200,$lte:300}},
-					{price: {$lte:1000000,$gte:10000000}}
-				]
 
 
-
-			a = Property.get({
-				$and: [
-					{room:9},
-					{size: {$gte:200,$lte:350}},
-					{price: {$gte:1000000,$lte:13000000}}
-				]
-			});
-
-
-			}*/
-    		window.Apartment = Apartment;
-    		window.Property = Property;
 
 
 
