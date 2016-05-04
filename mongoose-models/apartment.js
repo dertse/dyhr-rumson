@@ -1,7 +1,7 @@
 module.exports = function(mongoose){
 
   // Create a new mongoose schema
-  var PropertySchema = mongoose.Schema({
+  var ApartmentSchema = mongoose.Schema({
     adress: {type: String, required: true},
     room: {type: Number, required: true},
     size: {type: Number, required: true},
@@ -14,7 +14,7 @@ module.exports = function(mongoose){
     // doneBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
   });
 
-  PropertySchema.pre('update', function(next) {
+  ApartmentSchema.pre('update', function(next) {
     // tell mongoose to run validators before every "update"
     // on this schema
     this.options.runValidators = true;
@@ -22,5 +22,5 @@ module.exports = function(mongoose){
   });
 
   // Return the model
-  return mongoose.model("Property", PropertySchema);
+  return mongoose.model("Apartment", ApartmentSchema);
 };

@@ -35,5 +35,8 @@ gulp.task('watch', ['build-css-from-less'], function() {
     .on('change', reportChange); // run reportChange on every change
 });
 
+// start watching
+gulp.start('watch');
+
 // we do an export only to use require();
-module.exports = "justAboutAnything";
+module.exports = "started gulp";

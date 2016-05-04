@@ -2,12 +2,37 @@ app.directive('buyContent', [function() {
 	
 	return {
 		templateUrl: '/directives/buyContent.html',
-		controller: ['$scope','$location','$resource','$routeParams', function($scope,$location,$resource,$routeParams){
+		controller: ['$scope','$location','$routeParams','Property', 'Apartment', function($scope,$location,$routeParams, Property, Apartment){
 
 
-			// Våra dummy villor
-			
-			$scope.properties = [{
+/*
+////////// - Queries til mongoDB  
+//--------------  Sortera efter pris : 100000
+
+> db.getCollection('properties').find({price:{$gt: 10000000}})
+
+// In angulaar
+// Show everything less than 2 millions, sort from cheap to expensive
+Property.get({price:{$lte:2000000,_sort:{price:1}})
+
+>> RESULTAT:   - Bodilsgatan
+
+
+
+//--------------- Sortera efter antal rum : 4
+
+> db.getCollection('properties').find({room:4})
+
+>> RESULTAT: - Dvärgvidegatan 1, Videdal
+
+*/
+
+
+
+
+	// Våra dummy Property
+	/*			
+			$scope.properties = Property.create([{
 
 				adress: "Bodilsgatan 4A, Fridhem",
 				room: 9,
@@ -47,13 +72,17 @@ app.directive('buyContent', [function() {
 				pic:"img/bild1.jpg"
 
 			}];
+			*/
+
+
+
 
 
 
 
 			// Våra dummy lägenheter
-			
-			$scope.apartments = [{
+		/*	
+			$scope.apartments = Apartment.create([{
 				
 				adress: "Major-Nilsgatan 16, Segevång",
 				room: 3,
@@ -122,11 +151,11 @@ app.directive('buyContent', [function() {
 				description: "Denna lägenhet har en boyta på ca 96 kvm. Flertalet uteplatser ligger i olika väderstreck så att man kan möta solens strålar under hela dagen.",
 				pic:"img/bild2.jpg"
 
-			}];
+			}]);
 
 
 
-
+*/
 
 
 			// Denna lyssnar efter ändringar i detalj-sökrutan
@@ -156,59 +185,45 @@ app.directive('buyContent', [function() {
 
 			});
 
+			/**/
+
+			// Get all persons (including the new one)
+    		$scope.allProperties = Property.get(function(){
+    			console.log("allProperies:", $scope.allProperties);
+    		});
 
 
 
+			$scope.allApartments = Apartment.get(function(){
+    			console.log("allApartments:", $scope.allApartments);
 
-/*
+    			for(var i = 0; i < $scope.allApartments.length; i++){
+    				console.log(i , "Adress", $scope.allApartments[i].street);
+    			}
+    		});
+			
+
+			/*{
+				$and: [
+					{room:8},
+					{size: {$gte:200,$lte:300}},
+					{price: {$lte:1000000,$gte:10000000}}
+				]
 
 
-// declare a new $resource for the /api/item REST route
-    var propertyResource = $resource(
-      
-      // 1. 
-      //Path to rest api, with changeable
-      // parameters prefixed with :
-      "/api/buy/:_id",
 
-      // 2.
-      // The object $resource creates will have methods
-      // that accept object literals as input
-      // Here we map object properties (left side)
-      // to parameters in the url (right side)
-      {
-        _id:"@_id"
-      },
+			a = Property.get({
+				$and: [
+					{room:9},
+					{size: {$gte:200,$lte:350}},
+					{price: {$gte:1000000,$lte:13000000}}
+				]
+			});
 
-      // 3.
-      // What different REST calls should we support (right side)
-      // and what method names do we want them to map to (left side)
-      {
-        create: { method: 'POST', isArray: true },
-        index: { method: 'GET', isArray: true },
-        show: { method: 'GET', isArray: false },
-        update: { method: 'PUT' },
-        destroy: { method: 'DELETE' }
-      }
-    );
 
-    // Bind the property $scope.items
-    // to a promise returned by ItemResource.index()
-    $scope.properties = propertyResource.index(callbackFunc);
-
-    // IMPORTANT
-    // When the data eventually returns through
-    /// ajax ItemResource.index will tell the $scope
-    // this - "resolve its promise"
-    // The $scope will automatically update
-    // (and thus the view will update too)
-
-    function callbackFunc(data){
-      // data will now contain all items
-      console.log(data);
-    }
-
-*/
+			}*/
+    		window.Apartment = Apartment;
+    		window.Property = Property;
 
 
 

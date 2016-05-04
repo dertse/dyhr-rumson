@@ -6,7 +6,7 @@ var app = angular.module("myApp", [
   'ngTouch',
   'ui.bootstrap'
 ]);
-
+//Dependency injection
 app.config(["$locationProvider", "$routeProvider", function($locationProvider, $routeProvider){
 
 	$routeProvider
@@ -17,7 +17,7 @@ app.config(["$locationProvider", "$routeProvider", function($locationProvider, $
 		templateUrl: "/templates/buy.html"
 	})
 	.when("/buy/:id", {
-		templateUrl: "/templates/buy.html"
+		templateUrl: "/templates/buyDetailContent.html"
 	})
 	.when("/sell", {
 		templateUrl: "/templates/sell.html"
