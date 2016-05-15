@@ -4,17 +4,17 @@ app.directive('buyContent', [function() {
 		templateUrl: '/directives/buyContent.html',
 		controller: ['$scope','$location','$routeParams','$uibModal','Property', function($scope,$location,$routeParams,$uibModal, Property){
 
+		var once;
+		function propInfo() {
+			// onyl do this once,
+			// since we want info for ALL properties
+			// not filtered!
+			if (once) { return; }
+			once = true;
 
-
-		// Hämtar alla Properties från DB 
-		$scope.properties = Property.get(function(info) 
-		{
-			$scope.properties = info;
-			/*console.log(info);*/
- 
 			var antalObjekt = 0;
 			var antalVillor = 0;
-			var antalLägenheter = 0;
+			var antalLagenheter = 0;
 			
 
 			for(var i = 0; i < $scope.properties.length; i++)
@@ -27,158 +27,104 @@ app.directive('buyContent', [function() {
 				}
 				else if ($scope.properties[i].type == "Lägenhet") 
 				{
-					antalLägenheter++;
+					antalLagenheter++;
 				}
 			}
 			// uppdaterar antalet objekt i view på knapparna
-			antalObjekt = antalVillor + antalLägenheter; 
-			$('#antalVillor').html(antalVillor);
-			$('#antalLägenheter').html(antalLägenheter);
-			$('#antalObjekt').html(antalObjekt);
-		
-		});
+			antalObjekt = antalVillor + antalLagenheter; 
+			$scope.antalVillor = antalVillor;
+			$scope.antalLagenheter = antalLagenheter;
+			$scope.antalObjekt = antalObjekt;
+		}
+
 
 
 		// hämtar alla objekt
 		$scope.getAll = function(){
-			$scope.properties = Property.get({},function(data){
-				console.log("Alla Objekt:" , data.length, data);
-				$('#antalObjekt').html(data.length);
-				$('#typTitel').html("Alla Bostäder");
-			});
+			$scope.typeSel = '';
 		};
 
 		// hämtar Villor/Hus
 		$scope.getProperties = function(){
-			$scope.properties = Property.get({type:"Villa"}, function(data){
-				console.log("Villor: ",data.length, data);
-				$('#typTitel').html("Alla Hus & Villor");
-			});
+			$scope.typeSel = 'Villa';
 		};
 
 		// hämtar lägenheter
 		$scope.getApartments = function(){
-			$scope.properties = Property.get({type:"Lägenhet"},function(data){
-				console.log("Lägenheter:" , data.length, data);
-				$('#typTitel').html("Alla Lägenheter");
-			});
+			$scope.typeSel = 'Lägenhet';
 		};
 
 
+		// thomas sök kod
+		// src: http://lernia.nodebite.se/sokfiltrera-bygg-mongo-queries-fran-select-input/
 
+		var options = {
+
+			roomSel: {
+				modelProperty: "room",
+				type: Number,
+				operator: "$gte"
+			},
+			typeSel: {
+				modelProperty: "type",
+				type: String,
+				operator: "$eq"
+			},
+			maxPriceSel: {
+				modelProperty: "price",
+				type: Number,
+				operator: "$lte"
+			},
+			minAreaSel: {
+				modelProperty: "size",
+				type: Number,
+				operator: "$gte"
+			}
+		};
+
+		// The $scope variables to watch as an array
+		var toWatch = [];
+		for(var i in options){ toWatch.push(i); }
+
+		console.log("$watchGroup watching scope props", toWatch);
 		// sök mot databas
 		$scope.searchForProperties = function(){
 
-			var roomResult = 0;
-			var antalObjekt = 0;
-
-			var valueRoom = $('#valueRoom').val();
-			var valueSize = $('#valueSize').val();
-			var valuePrice = $('#valuePrice').val();
-
-
-			////////////////
-			// getRooms
-			///////////////
-			$scope.searchResult = Property.get({$and: [
-				{room:{$gte: valueRoom}},
-				{size:{$gte: valueSize}}
-			]},function(result){
-				
-				antalObjekt = result.length; 
-
-				for(var i = 0; i < result.length; i++)
-				{	
-					roomResult++;
-					console.log(result[i].adress, "uppfyller krav");
-				}
-				
-				$scope.properties = result;
-				$('#theRoomResult').html(roomResult);
-				$('#antalObjekt').html(antalObjekt);
-				$('#typTitel').html(roomResult + " objekt hittades");
-
-				
-			});
-			console.log("------------");
+		  var query = {$and:[]}, partQuery, val, ops;
+		  // Build a mongo $and query by looping through the options
+		  for(var i in options){
+		    ops = options[i];
+		    // Get the value from $scope, convert numbers to numbers
+		    val = ops.type === Number ? $scope[i] / 1 : $scope[i];
+		    // Ignore empty and faulty values
+		    if(!val){ continue; }
+		    if(ops.type === Number && isNaN(val)){ continue; }
+		    // Build this part of the query
+		    partQuery = {};
+		    partQuery[ops.modelProperty] = {};
+		    partQuery[ops.modelProperty][ops.operator] = val;
+		    // Add it to the main query
+		    query.$and.push(partQuery);
+		  }
+		  // $and must never be an empty array
+		  if(query.$and.length === 0){ delete query.$and; }
+		  // Debug, check how the query looks
+		  console.log("QUERY", JSON.stringify(query,'','  '));
+		  // Query the database through a ngResource object
+		  $scope.properties = Property.get(query, propInfo);
 
 		}// END getTheData funktionen
 
-
-
-		// utför en queryReqest
-		// vid varje ändring i min div #mySearchControl
-		$('#mySearchControl').change(function(){
-
-			var roomResult = 0;
-			var antalObjekt = 0;
-
-			var valueRoom = $('#valueRoom').val();
-			var valueSize = $('#valueSize').val();
-			var valuePrice = $('#valuePrice').val();
-
-
-			////////////////
-			// sök efter resultat
-			///////////////
-			$scope.searchResult = Property.get({$and: [
-				{room:{$gte: valueRoom}},
-				{size:{$gte: valueSize}}
-			]},function(result){
-				
-				antalObjekt = result.length;
-
-				for(var i = 0; i < result.length; i++)
-				{
-					roomResult++;
-					console.log(result[i].adress, "uppfyller krav");
-				}
-				
-				$scope.properties = result;
-				
-				$('#theRoomResult').html(roomResult);
-				$('#antalObjekt').html(antalObjekt);
-				$('#typTitel').html(roomResult + " objekt hittades");
-
-				
-			});
-				
-			console.log("------------");
-
+		// Watch the variables for changes
+		$scope.$watchGroup(toWatch, function(){
+		  $scope.searchForProperties();
 		});
 
 
-
-		// så ska jag filtrera mina sökningar mot mongoDB i routen
-		/*
-
-		{
-			$and: [
-				{room:8},
-				{size: {$gte:200,$lte:300}},
-				{price: {$lte:1000000,$gte:10000000}}
-			]
-
-
-
-		a = Property.get({
-			$and: [
-				{room:9},
-				{size: {$gte:200,$lte:350}},
-				{price: {$gte:1000000,$lte:13000000}}
-			]
-		});
-
-
-		}
-
-		window.Apartment = Apartment;
-		window.Property = Property;
-		*/
 
 
 /*carousel test*/
-
+/*
 $scope.myInterval = 5000;
       $scope.noWrapSlides = false;
       $scope.active = 0;
@@ -188,8 +134,7 @@ $scope.myInterval = 5000;
       $scope.addSlide = function() {
         var newWidth = 1200 + slides.length + 1;
         slides.push({
-        	image: '/img/l/bild' + 1 + '.jpg',
-         /* image: 'http://lorempixel.com/' + newWidth + '/300',*/
+         image: 'http://lorempixel.com/' + newWidth + '/300',
           text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
           id: currIndex++
         });
@@ -198,8 +143,9 @@ $scope.myInterval = 5000;
       for (var i = 0; i < 4; i++) {
         $scope.addSlide();
       }
-
+*/
 /*modal test*/
+
 
    // opens our modal on ng-click!
       $scope.openModal = function() {
@@ -231,6 +177,9 @@ $scope.myInterval = 5000;
           }
         );
       };
+
+
+
 
 
 
