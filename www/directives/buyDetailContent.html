@@ -1,4 +1,29 @@
 <div class="col-xs-24 col-md-24"><!-- MAIN DIV -->
+	<a href="/buy"><h3><span class="glyphicon glyphicon-arrow-left"></span>Tillbaka</h3></a>
+	<div class="col-xs-24 col-md-24">
+	<h2><span class="glyphicon glyphicon-home"></span>  Fakta</h2>
+		<div class="col-xs-24 col-md-24 col-lg-24 makeShadowBorder">
+			<div class="list-group">
+		        <p class="list-group-item active">
+		          <span><span class="glyphicon glyphicon-home"></span>  {{property.adress}} </span>
+		        </p><br>
+		        <div class="col-xs-24 col-md-12 col-lg-12">
+			        <span><!-- FIX - En extra span fixade så att badge stannade bredvid sin text -->
+			        	<b>Rum:</b> <span class="badge"> {{property.room}}</span>
+			            <b>Antal Kvm:</b> <span class="badge">{{property.size}}</span>
+			            <b>Pris:</b> <span class="badge"> {{property.price}}<br></span><hr></p>
+			            <p>{{property.description}}<p>
+			        </span>
+		        </div>
+		        <div class="col-xs-24 col-md-12 col-lg-12">
+			        <div class="buyGallery">
+			        	<img ng-src="{{property.pic}}"><br>
+			        </div>
+			          <i> <b>ID: </b>  {{property._id}}</i>
+		        </div>
+		    </div><!-- list-group -->	
+		</div>
+	</div>
 	<div class="col-xs-24 col-md-24">
 		<div class="col-xs-24 col-md-24">
 			
@@ -6,32 +31,5 @@
 			</pre>
 		</div>	
 	</div>
-
-	<div class="col-xs-24 col-md-24">
-	<h2>Fakta</h2>
-		<div class="col-xs-24 col-md-24 col-lg-24 makeShadowBorder">
-			<div class="list-group">
-		        <p class="list-group-item active">
-		          <span> {{property.adress}} </span>
-		        </p><br>
-		        <span><!-- FIX - En extra span fixade så att badge stannade bredvid sin text -->
-		        	<b>Rum:</b> <span class="badge"> {{property.room}}</span>
-		            <b>Antal Kvm:</b> <span class="badge">{{property.size}}</span>
-		            <b>Pris:</b> <span class="badge"> {{property.price}}<br></span><hr></p>
-		            <p>{{property.description}}<p>
-		        </span>
-		        <div class="buyGallery">
-		        	<img ng-src="{{property.pic}}"><br>
-		        </div>
-		          <i> <b>ID: </b>  {{property._id}}</i>
-		    </div><!-- list-group -->	
-			
-		</div>
-	</div>
-
-
-
-
-	
 
 </div><!-- MAIN DIV -->

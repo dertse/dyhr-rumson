@@ -7,7 +7,7 @@ var app = angular.module("myApp", [
   'ui.bootstrap'
 ]);
 //Dependency injection
-app.config(["$locationProvider", "$routeProvider", function($locationProvider, $routeProvider){
+app.config(["$locationProvider", "$routeProvider", function($locationProvider, $routeProvider,$modal){
 
 	$routeProvider
 	.when("/", {
