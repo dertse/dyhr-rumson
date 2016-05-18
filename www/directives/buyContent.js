@@ -1,4 +1,4 @@
-app.directive('buyContent', [function() {
+ app.directive('buyContent', [function() {
 	
 	return {
 		templateUrl: '/directives/buyContent.html',
@@ -87,6 +87,8 @@ app.directive('buyContent', [function() {
 		for(var i in options){ toWatch.push(i); }
 
 		console.log("$watchGroup watching scope props", toWatch);
+
+
 		// sök mot databas
 		$scope.searchForProperties = function(){
 

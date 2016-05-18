@@ -24,13 +24,11 @@
   </div>
 </div> -->
 
-<div class="col-xs-24 col-md-24">
-
 <h1><span class="glyphicon glyphicon-search"></span> Sök bostad</h1>
 <br><br>
   <div class="btn-group btn-group-justified" role="group" aria-label="...">
     <div class="btn-group" role="group">
-      <button ng-click="getAll()" type="button" class="btn btn-default">Alla lediga  <span class="badge">{{antalObjekt}}</span></button>
+      <button ng-click="getAll()" type="button" class="btn btn-default">Alla lediga  <span class="badge">{{ antalObjekt }}</span></button>
     </div>
     <div class="btn-group" role="group">
       <button ng-click="getApartments()" type="button" class="btn btn-primary">Lägenheter  <span class="badge">{{antalLagenheter}}</span></button>
@@ -136,9 +134,12 @@
         <div class="row">
           <div>
             <h3>Resultat</h3>
-            <button id="testKnapp" ng-click="searchForProperties()" class="btn-warning btn-lg btn-block">Sök med filtrering 
-              <span class="pull-right"><span class="badge" style="text-align: right;" id="theRoomResult"> {{ antalObjekt }} </span> Resultat </span>
-            </button>
+            <div class="alert alert-info" role="alert">
+              <p class="alert-link">Dina sökning gav {{ properties.length }} resultat </p>
+            </div>
+            <!-- <button id="testKnapp" ng-click="searchForProperties()" class="btn-warning btn-lg btn-block">Sök med filtrering 
+              <span class="pull-right"><span class="badge" style="text-align: right;" id="theRoomResult"> {{ properties.length }}  </span> Resultat </span>
+            </button> -->
           </div>
         </div><br>
       </div><!-- .col -->
