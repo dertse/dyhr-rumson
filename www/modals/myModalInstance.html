@@ -1,0 +1,33 @@
+<!-- "vanilla" bootstrap modal-content html -->
+<div class="modal-header">
+  <h3 class="modal-title">Make a choice:</h3>
+</div>
+<div class="modal-body">
+  <p>YOU MADE IT TO THE MODAL! :D</p>
+  <div class="form-group">
+    <label>
+      <input type="radio" name="radioInput" ng-model="selectedOption"
+      value="A">A
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      <input type="radio" name="radioInput" ng-model="selectedOption"
+      value="B">
+      B
+    </label>
+  </div>
+  <div class="form-group">
+    <label>
+      <input type="radio" name="radioInput" ng-model="selectedOption"
+      value="C">
+      C
+    </label>
+  </div>
+</div>
+<div class="modal-footer">
+  <!-- "Ok" button is disabled if user has not selected an option! -->
+  <button
+  class="btn btn-primary" type="button" ng-click="ok()" ng-disabled="!selectedOption">OK</button>
+  <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>
