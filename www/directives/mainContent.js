@@ -3,25 +3,29 @@ app.directive('mainContent', [function(){
   return {
     templateUrl: '/directives/mainContent.html',
     controller: ['$scope', function($scope) {
-      $scope.wells = /*[
-        {
-          title: 'Well 1',
-          content: 'Aliquam finibus purus vitae ipsum aliquam, vitae blandit lectus aliquet. Phasellus dignissim porta placerat. Nulla facilisi.'
-        },
-        {
-          title: 'Well 2',
-          content: 'Morbi nibh dui, porttitor vel sagittis vel, porttitor nec dolor. Duis cursus porttitor neque, sagittis scelerisque est commodo quis.'
-        },
-        {
-          title: 'Well 3',
-          content: 'Pellentesque a bibendum nisi. In dignissim est tortor, vitae iaculis nunc gravida et. Mauris venenatis libero eget risus sollicitudin euismod ut sed mi.'
-        }
-      ];
-*/
-      // make all wells fit on a single row
 
-      
+      $scope.wells = $scope.myInterval = 5000;
+      $scope.noWrapSlides = false;
+      $scope.active = 0;
+      var slides = $scope.slides = [];
+      var currIndex = 0;
 
+      $scope.addSlide = function() {
+        var newWidth = 600 + slides.length + 1;
+        slides.push({
+          //image: 'http://lorempixel.com/' + newWidth + '/300',
+          imageStyle: {
+            'background-image': 'url(http://lorempixel.com/' + newWidth + '/300)'
+          },
+          text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+          id: currIndex++
+        });
+      };
+    
+      for (var i = 0; i < 4; i++) {
+        $scope.addSlide();
+      }
+        
 
     
 
