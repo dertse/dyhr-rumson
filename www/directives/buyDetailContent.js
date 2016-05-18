@@ -12,13 +12,13 @@ app.directive("buyDetailContent", [function() {
 
 		  	$scope.property = info;
 
-		  	console.log("ID:", theID,
+		  	/*console.log("ID:", theID,
 		  				"\nAdress:", info.adress,
 		  				"\nKvm:", info.size,
 		  				"\nPris:", info.price,
 		  				"\nTyp:", info.type,
 		  				"\nBeskrivning:", info.description,
-		  				"\nBild:", info.pic);
+		  				"\nBild:", info.pic);*/
 		  });
 		
 

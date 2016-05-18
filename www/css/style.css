@@ -88,9 +88,18 @@ button{
 
 div.buyGallery img{
 	
-    width: 100%;
-	border-radius: 50px;
+    
+    width: 80%;
+	border-radius: 10%;
     border: 2px solid #337AB7;
+    transition: 1s ease-in-out;
+}
+div.buyGallery img:hover{
+	width: 100%;
+	border-radius: 10%;
+    border: 2px solid #337AB7;
+    transition: 1s ease-in-out;
+    
 }
 
 /* text till visning av hus/lägenheter */
@@ -283,4 +292,8 @@ width:800px !important;
 
 #page-footer .left,#page-footer .right{
 display:none;
+}
+
+.resultDivShadow{
+	background-color: #EEEEEE;
 }

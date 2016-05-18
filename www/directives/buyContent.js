@@ -2,254 +2,181 @@ app.directive('buyContent', [function() {
 	
 	return {
 		templateUrl: '/directives/buyContent.html',
-		controller: ['$scope','$location','$routeParams','Property', function($scope,$location,$routeParams, Property){
+		controller: ['$scope','$location','$routeParams','$uibModal','Property', function($scope,$location,$routeParams,$uibModal, Property){
 
+		var once;
+		function propInfo() {
+			// onyl do this once,
+			// since we want info for ALL properties
+			// not filtered!
+			if (once) { return; }
+			once = true;
 
-
-
-
-	// Hämtar alla Properties från DB (including the new one)
-		$scope.properties = Property.get(function(info) 
-		{
-			$scope.properties = info;
-
-
+			var antalObjekt = 0;
 			var antalVillor = 0;
-			var antalLägenheter = 0;
+			var antalLagenheter = 0;
+			
 
-			for(var i = 0; i < $scope.properties.length; i++){
+			for(var i = 0; i < $scope.properties.length; i++)
+			{
 				
-				console.log($scope.properties[i].type);
-				if ($scope.properties[i].type == "Villa") {
+				//console.log("st av typen", $scope.properties[i].type);
+				if ($scope.properties[i].type == "Villa") 
+				{
 					antalVillor++;
 				}
-				else if ($scope.properties[i].type == "Lägenhet") {
-					antalLägenheter++;
+				else if ($scope.properties[i].type == "Lägenhet") 
+				{
+					antalLagenheter++;
 				}
-
 			}
-			console.log("Du har ", antalVillor, "antal villor");
-			console.log("Du har ", antalLägenheter, "antal lägenheter");
-
-			$('#antalVillor').html(antalVillor);
-			$('#antalLägenheter').html(antalLägenheter);
-		});
-
-
-
-
-
-
-
-		// så ska jag filtrera mina sökningar mot mongoDB i routen
-		/*{
-			$and: [
-				{room:8},
-				{size: {$gte:200,$lte:300}},
-				{price: {$lte:1000000,$gte:10000000}}
-			]
-
-
-
-		a = Property.get({
-			$and: [
-				{room:9},
-				{size: {$gte:200,$lte:350}},
-				{price: {$gte:1000000,$lte:13000000}}
-			]
-		});
-
-
+			// uppdaterar antalet objekt i view på knapparna
+			antalObjekt = antalVillor + antalLagenheter; 
+			$scope.antalVillor = antalVillor;
+			$scope.antalLagenheter = antalLagenheter;
+			$scope.antalObjekt = antalObjekt;
 		}
 
-		window.Apartment = Apartment;
-    	window.Property = Property;
- */
 
 
-			// Denna lyssnar efter ändringar i detalj-sökrutan
+		// hämtar alla objekt
+		$scope.getAll = function(){
+			$scope.typeSel = '';
+		};
 
-			$('#mySearchControl').change(function() {
-				var room = $('#valueRoom option:selected').text();
-				var size = $('#valueSize option:selected').text();
-				var price = $('#valuePrice option:selected').text();
+		// hämtar Villor/Hus
+		$scope.getProperties = function(){
+			$scope.typeSel = 'Villa';
+		};
 
-				console.log("Nya värden\n\n" ,"Antal Rum : ", room ,"\n" ,"Storlek :" , size, "\n", "Pris : ", price, "\n");
-
-				// håller i nya och gamla värden
-				var searchRoom = room;
-				var searchSize = size;
-				var searchPrice = price;
-
-				$('#searchRoom').html(searchRoom);
-				$('#searchSize').html(searchSize);
-				$('#searchPrice').html(searchPrice);
-
-				if(searchPrice == " < 10,000,000 ")
-				{
-					$('#extraInfo').append("Hoppas du kan redovisa dem pengarna :P");
-				}
-				else
-				{
-					$('#extraInfo').text("");
-				}
-
-			});
+		// hämtar lägenheter
+		$scope.getApartments = function(){
+			$scope.typeSel = 'Lägenhet';
+		};
 
 
+		// thomas sök kod
+		// src: http://lernia.nodebite.se/sokfiltrera-bygg-mongo-queries-fran-select-input/
 
+		var options = {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// Våra dummy Property
-/*			
-			$scope.properties = Property.create([{
-
-				adress: "Bodilsgatan 4A, Fridhem",
-				room: 9,
-				size: 325,
-				price: 12875000,
-				type: "Villa",
-				description: "Villan som har en boyta på ca 325 kvm samt en boyta på ca 120 kvm, ligger på en mycket rogivande och insynsskyddad tomt. Flertalet uteplatser ligger i olika väderstreck så att man kan möta solens strålar under hela dagen. Villans materialval är av hög kvalité: genuin kalksten, gedigna trägolv av ek, marmor, fiskbensparkett, spegeldörrar, teak och utvändigt av tegel och koppar.",
-				pic:"img/bild4.jpg"
+			roomSel: {
+				modelProperty: "room",
+				type: Number,
+				operator: "$gte"
 			},
-			{
-				adress: "John Lundvallsgatan 13, Bunkeflostrand",
-				room: 8,
-				size: 245,
-				price: 6500000,
-				type: "Villa",
-				description: "Gedigen kvalitetsvilla på Bunkeflostrands sjösida! Interiören mäter hela 211kvm på 1 plan med 6 rymliga sovrum, 3 badrum och fantastiska sällskapsytor med över 5 m i takhöjd. Som extra krydda finner ni även ett eget biorum på plan 2 på över 30 kvm. Låga driftskostnader.",
-				pic:"img/bild2.jpg"
-
+			typeSel: {
+				modelProperty: "type",
+				type: String,
+				operator: "$eq"
 			},
-			{
-				adress: "Dvärgvidegatan 1, Videdal",
-				room: 4,
-				size: 138,
-				price: 399500,
-				type: "Villa",
-				description: "Mycket fint och gediget stenhus som genomgått omfattande och påkostade renoveringar som dränering -11, byte av tak -13, fönsterbyte -11, el-11 och värmepump från -11, Inre hel renovering -11 med bland annat nya badrum, kök och maskiner, golv och ytskikt. Trivsamt vardagsrum i vinkel, 3 stora sovrum som kan bli 4. Inredd källare med bra takhöjd. Uterum och carport med förråd från -15. Välkommen på visning.",
-				pic:"img/bild3.jpg"
-
+			maxPriceSel: {
+				modelProperty: "price",
+				type: Number,
+				operator: "$lte"
 			},
-			{
-				adress: "Spelmansgatan 64, Kastanjegården",
-				room: 6,
-				size: 134,
-				price: 3595000,
-				type: "Villa",
-				description: "Trevlig 70-tals villa med inredd källare. Altan, balkong och öppen spis är bara några av fördelarna med detta boende.",
-				pic:"img/bild1.jpg"
+			minAreaSel: {
+				modelProperty: "size",
+				type: Number,
+				operator: "$gte"
+			}
+		};
 
-			}];
+		// The $scope variables to watch as an array
+		var toWatch = [];
+		for(var i in options){ toWatch.push(i); }
+
+		console.log("$watchGroup watching scope props", toWatch);
+		// sök mot databas
+		$scope.searchForProperties = function(){
+
+		  var query = {$and:[]}, partQuery, val, ops;
+		  // Build a mongo $and query by looping through the options
+		  for(var i in options){
+		    ops = options[i];
+		    // Get the value from $scope, convert numbers to numbers
+		    val = ops.type === Number ? $scope[i] / 1 : $scope[i];
+		    // Ignore empty and faulty values
+		    if(!val){ continue; }
+		    if(ops.type === Number && isNaN(val)){ continue; }
+		    // Build this part of the query
+		    partQuery = {};
+		    partQuery[ops.modelProperty] = {};
+		    partQuery[ops.modelProperty][ops.operator] = val;
+		    // Add it to the main query
+		    query.$and.push(partQuery);
+		  }
+		  // $and must never be an empty array
+		  if(query.$and.length === 0){ delete query.$and; }
+		  // Debug, check how the query looks
+		  console.log("QUERY", JSON.stringify(query,'','  '));
+		  // Query the database through a ngResource object
+		  $scope.properties = Property.get(query, propInfo);
+
+		}// END getTheData funktionen
+
+		// Watch the variables for changes
+		$scope.$watchGroup(toWatch, function(){
+		  $scope.searchForProperties();
+		});
+
+
+
+
+/*carousel test*/
+/*
+$scope.myInterval = 5000;
+      $scope.noWrapSlides = false;
+      $scope.active = 0;
+      var slides = $scope.slides = [];
+      var currIndex = 0;
+
+      $scope.addSlide = function() {
+        var newWidth = 1200 + slides.length + 1;
+        slides.push({
+         image: 'http://lorempixel.com/' + newWidth + '/300',
+          text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+          id: currIndex++
+        });
+      };
+
+      for (var i = 0; i < 4; i++) {
+        $scope.addSlide();
+      }
 */
+/*modal test*/
 
 
+   // opens our modal on ng-click!
+      $scope.openModal = function() {
 
+        // create a new modal with the following settings
+        var modalInstance = $uibModal.open({
+          animation: true, // animate show/hide
+          // use this template
+          templateUrl: '/modals/myModalInstance.html',
+          // use this controller (src: /modals/myModalInstance.js)
+          controller: 'myModalInstance',
+          // prevent dismissing by clicking on backdrop
+          backdrop: 'static',
+          // make our modal large
+          size: 'lg'
+        });
 
-
-
-
-			// Våra dummy lägenheter
-/*	
-			$scope.properties = Property.create([{
-				
-				adress: "Major-Nilsgatan 16, Segevång",
-				room: 3,
-				size: 73,
-				price: 1200000,
-				type: "Lägenhet",
-				description: "lägenheten som har en boyta på ca 73 kvm. Flertalet uteplatser ligger i olika väderstreck så att man kan möta solens strålar under hela dagen. lägenhetens materialval är av hög kvalité: genuin kalksten, gedigna trägolv av ek, marmor, fiskbensparkett, spegeldörrar, teak och utvändigt av tegel och koppar.",
-				pic:"img/bild3.jpg"
-			},
-			{
-				adress: "Dvärgvidegatan 1, Nydala",
-				room: 2,
-				size: 51,
-				price: 650000,
-				type: "Lägenhet",
-				description: "Gedigen lägenhet på Nydala. Interiören mäter hela 51kvm på 1 plan med 2 rymliga rum, badrum och fantastiska sällskapsytor med över 3m i takhöjd. Låga driftskostnader.",
-				pic:"img/bild2.jpg"
-
-			},
-			{
-				adress: "John Lundvallsgatan 13, Västra Hamnen",
-				room: 4,
-				size: 138,
-				price: 995000,
-				type: "Lägenhet",
-				description: "Mycket fint och gediget lägenhet som genomgått omfattande och påkostade renoveringar som stammbyte -11, byte av tak -13, vardagsrum i vinkel, 3 stora sovrum som kan bli 4. Inredd källare med bra takhöjd. Uterum och carport med förråd från -15. Välkommen på visning.",
-				pic:"img/bild1.jpg"
-
-			},
-			{
-				adress: "Spelmansgatan 64, Kastanjegården",
-				room: 5,
-				size: 134,
-				price: 3000000,
-				type: "Lägenhet",
-				description: "Trevlig lägenhet med Altan, balkong är bara några av fördelarna med detta boende.",
-				pic:"img/bild4.jpg"
-
-			},
-			{
-				adress: "Dvärgvidegatan 64, Kastanjegården",
-				room: 2,
-				size: 47,
-				price: 700000,
-				type: "Lägenhet",
-				description: "Gedigen lägenhet på Kastanjegården. Interiören mäter hela 47kvm på 1 plan med 2 rymliga rum, badrum och fantastiska sällskapsytor med över 3m i takhöjd",
-				pic:"img/bild3.jpg"
-
-			},
-			{
-				adress: "John Lundvallsgatan 13, Västra Hamnen",
-				room: 3,
-				size: 88,
-				price: 1300000,
-				type: "Lägenhet",
-				description: "Trevlig lägenhet med Altan, balkong är bara några av fördelarna med detta boende.",
-				pic:"img/bild1.jpg"
-
-			},
-			{
-				adress: "Bankgatan 4, Videdal",
-				room: 4,
-				size: 96,
-				price: 2200000,
-				type: "Lägenhet",
-				description: "Denna lägenhet har en boyta på ca 96 kvm. Flertalet uteplatser ligger i olika väderstreck så att man kan möta solens strålar under hela dagen.",
-				pic:"img/bild2.jpg"
-
-			}]);
-*/
-
-
-		
-
-
+        modalInstance.result.then(
+          // "done" (user said OK)
+          function (selectedOption) {
+            // selected option is sent to us from the modal controller
+            // ($uibModalInstance.close($scope.selectedOption))
+            console.log('Modal closed at: ' + new Date() + ', User selected ' + selectedOption);
+          }, function () {
+            // "fail" (user said cancel)
+            // the modal controller did not send us anything
+            // ($uibModalInstance.dismiss())
+            console.log('Modal dismissed at: ' + new Date());
+          }
+        );
+      };
 
 
 
