@@ -126,7 +126,7 @@
 
 
 /*carousel test*/
-/*
+
 $scope.myInterval = 5000;
       $scope.noWrapSlides = false;
       $scope.active = 0;
@@ -145,7 +145,7 @@ $scope.myInterval = 5000;
       for (var i = 0; i < 4; i++) {
         $scope.addSlide();
       }
-*/
+
 /*modal test*/
 
 
