@@ -25,21 +25,6 @@ app.directive('mainContent', [function(){
       for (var i = 0; i < 4; i++) {
         $scope.addSlide();
       }
-        
-
-    
-
-
-
-      /*footer*/
-
-      $( document ).ready(function() {
-
-$('.myfooter').appendTo('.body-wrap-2');
-$('.myfooter').css("display","block");
-});
-
-
 
 
       $scope.colSize = Math.floor(24/$scope.wells.length);

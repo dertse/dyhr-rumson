@@ -2,6 +2,11 @@
 	
 	return {
 		templateUrl: '/directives/buyContent.html',
+		link: function(scope, elem, attrs) {
+			scope.toggleDetailSearch = function() {
+				elem.find('.searchDetailsParent').slideToggle(500);
+			};
+		},
 		controller: ['$scope','$location','$routeParams','$uibModal','Property', function($scope,$location,$routeParams,$uibModal, Property){
 
 		var once;
@@ -127,7 +132,7 @@
 
 /*carousel test*/
 
-$scope.myInterval = 5000;
+/*$scope.myInterval = 5000;
       $scope.noWrapSlides = false;
       $scope.active = 0;
       var slides = $scope.slides = [];
@@ -145,10 +150,12 @@ $scope.myInterval = 5000;
       for (var i = 0; i < 4; i++) {
         $scope.addSlide();
       }
+*/
+
 
 /*modal test*/
 
-
+/*
    // opens our modal on ng-click!
       $scope.openModal = function() {
 
@@ -170,17 +177,8 @@ $scope.myInterval = 5000;
           function (selectedOption) {
             // selected option is sent to us from the modal controller
             // ($uibModalInstance.close($scope.selectedOption))
-            console.log('Modal closed at: ' + new Date() + ', User selected ' + selectedOption);
-          }, function () {
-            // "fail" (user said cancel)
-            // the modal controller did not send us anything
-            // ($uibModalInstance.dismiss())
-            console.log('Modal dismissed at: ' + new Date());
-          }
-        );
-      };
 
-
+*/
 
 
 

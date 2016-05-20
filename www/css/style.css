@@ -20,7 +20,8 @@
 
 body{
 	font-family:Regular;
-	padding: 1em 1em 1em;
+	background: #ededed url(/img/page_bg.png);
+	
 	/*background-color: black;
 	color: white;*/
 }
@@ -41,25 +42,34 @@ button{
 }
 
 .navbar-inverse{
+<<<<<<< HEAD
 	background-color: #1a53ff;
 }
 .navbar-nav>.navbar-brand{
 	color: red;
+=======
+	background-color:#292c2f;
+>>>>>>> 744b7d96319e6e69352559a6120d056386de4418
 }
+
 .navbar-inverse .navbar-nav>li>a{
-	color: #000;
+	color: #F5F6F7;
 	font-size: 1.2em;
-	font-family: Light;
+	font-family: bold;
 	transition: 0.4s ease-in-out;
+
+
 
 }
 .navbar-inverse .navbar-nav>li>a:hover{
 	transition: 0.6s ease-in-out;
+	background-color: #5383D3;
 }
 
 
 .navbar-inverse .navbar-brand {
     color: #000;
+
 }
 
 /*denna skapar en snygg box med skugga*/
@@ -73,7 +83,6 @@ button{
 }
 
 
-}
 /*-------------------------------------------------*/
 /* KÖPA */
 
