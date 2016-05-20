@@ -1,19 +1,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-      <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-        <!-- <img ng-src="{{slide.image}}" style="margin:auto;"> -->
-        <!-- moved style to /less/main.less -->
-        <div class="carouselHeight" ng-style="slide.imageStyle">
-            
-        </div>
-        <div class="carousel-caption">
-          <h4>Slide {{slide.id}}</h4>
-          <p>{{slide.text}}</p>
-        </div>
-      </uib-slide>
-    </uib-carousel>
+    <my-carousel></my-carousel>
   </div>
 
 
