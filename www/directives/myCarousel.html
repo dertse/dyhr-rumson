@@ -1,12 +1,15 @@
 <!-- <div style="height: 305px"> -->
 <!-- moved style to /less/main.less -->
 <div>
+
   <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
     <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
       <!-- <img ng-src="{{slide.image}}" style="margin:auto;"> -->
       <!-- moved style to /less/main.less -->
       <a ng-href="/buy">
           <div class="carouselHeight" ng-style="slide.imageStyle">
+
+          <div class="overlay"><h1>DYHR-RUMSON</h1></div>
               
           </div>
           <div class="carousel-caption">
