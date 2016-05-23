@@ -1,19 +1,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-      <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-        <!-- <img ng-src="{{slide.image}}" style="margin:auto;"> -->
-        <!-- moved style to /less/main.less -->
-        <div class="carouselHeight" ng-style="slide.imageStyle">
-            
-        </div>
-        <div class="carousel-caption">
-          <h4>Slide {{slide.id}}</h4>
-          <p>{{slide.text}}</p>
-        </div>
-      </uib-slide>
-    </uib-carousel>
+    <my-carousel></my-carousel>
   </div>
 
 
@@ -26,66 +14,43 @@
 
       <h1>Senaste bostäder</h1>
 
-          <div class="col-xs-24 col-md-12 ram">
-          <img class="bilder" src="../img/vila2/bild2.jpg">
-          <h1>John Lundvallsgatan 13</h1>
-              <h3>Bunkleflostrand, Malmö</h3>
-              <p>8 rum, 245 kvm</p>
-              <p>6 500 000 kr</p>
-              
-          </div>
+          <a href="/buy/572a4d7d11ec13680c424ed2">
+              <div class="col-xs-24 col-md-12 ram">
+              <img class="bilder" src="../img/l/bild2.jpg">
+              <h1>Dvärgvidegatan 1</h1>
+                  <h3>Nydala, Malmö</h3>
+                  <p>2 rum, 51 kvm</p>
+                  <p>650 000 kr</p>
+               </div>
+          </a>
 
 
+            <a href="/buy/572a4d7d11ec13680c424ed1">
+               <div class="col-xs-24 col-md-12 ram">
+                <img class="bilder" src="../img/l/bild1.jpg">
+                  <h1>Major-Nilsgatan 16</h1>
+                      <h3>Segevång, Malmö</h3>
+                      <p>3 rum, 73 kvm</p>
+                      <p>1 200 000 kr</p>
+                          
+                </div>
+          </a>
 
-            <div class="col-xs-24 col-md-12 ram">
-
-              <img class="bilder" src="../img/vila2/bild2-1.jpg">
-              <h1>John Lundvallsgatan 13</h1>
+           
+                <a href="/buy/5729c87e90a72f502667825a">
+                <div class="col-xs-24 col-md-12 ram">
+                <img class="bilder" src="../img/v/bild2.jpg">
+                <h1>John Lundvallsgatan 13</h1>
                   <h3>Bunkleflostrand, Malmö</h3>
-                  <p>8 rum, 245 kvm</p>
-                  <p>6 500 000 kr</p>
-                      
-          </div>
-
-            <div class="col-xs-24 col-md-12 ram">
-              <img class="bilder" src="../img/vila2/bild2-2.jpg">
-               <h1>John Lundvallsgatan 13</h1>
-                  <h3>Bunkleflostrand, Malmö</h3>
-                  <p>8 rum, 245 kvm</p>
-                  <p>6 500 000 kr</p>
-                      
-              
-          </div>
-
-          <div class="col-xs-24 col-md-12 ram">
-              <img class="bilder" src="../img/vila2/bild2-1.jpg">
-              <h1>John Lundvallsgatan 13</h1>
-                  <h3>Bunkleflostrand, Malmö</h3>
-                  <p>8 rum, 245 kvm</p>
-                  <p>6 500 000 kr</p>
+                  <p>7 rum, 211 kvm</p>
+                  <p>5 000 000 kr</p>
                       
               
-          </div>
+                </div>
+          </a>
 
-          <div class="col-xs-24 col-md-12 ram">
-              <img class="bilder" src="../img/vila2/bild2-1.jpg">
-              <h1>John Lundvallsgatan 13</h1>
-                <h3>Bunkleflostrand, Malmö</h3>
-                <p>8 rum, 245 kvm</p>
-                <p>6 500 000 kr</p>
-
-              
-          </div>
-
-          <div class="col-xs-24 col-md-12 ram">
-              <img class="bilder" src="../img/vila2/bild2-1.jpg">
-               <h1>John Lundvallsgatan 13</h1>
-                  <h3>Bunkleflostrand, Malmö</h3>
-                  <p>8 rum, 245 kvm</p>
-                  <p>6 500 000 kr</p>
-                      
-          </div>
-          <button type="button" class="knapp btn-lg">Visa alla bostäder</button>
+          <a ng-href="/buy">
+          <button type="button" class="knapp btn-lg">Visa alla bostäder</button></a>
       </div><!-- .bbb -->
     </div><!-- .container -->
 </div><!-- .container-fluid -->
