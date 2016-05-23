@@ -1,28 +1,5 @@
 <div class="starter-template">
-<!--   <h1>KÖPA</h1>
-  <p class="lead"><a ng-href="/sell">eller sälj ditt gamla</a></p> -->
-  
 </div>
-
-<!-- 
-<div class="col-xs-24 col-md-24">
-  <div class="row">
-    <h3>Min carousel</h3>
-    <div class="carouselHeight">
-      <uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
-        <uib-slide ng-repeat="slide in slides track by slide.id" index="slide.id">
-          <img ng-src="{{slide.image}}">
-          <div class="carousel-caption">
-            <h4>Slide {{slide.id}}</h4>   
-            <p>{{slide.text}}</p>
-          </div>
-        </uib-slide>
-      </uib-carousel>
-    </div>
-     <h3>min Modal</h3>
-    <button type="button" class="btn btn-default" ng-click="openModal()">Open my modal!</button>
-  </div>
-</div> -->
 
 <h1><span class="glyphicon glyphicon-search"></span> Sök bostad</h1>
 <br><br>
@@ -37,38 +14,24 @@
       <button ng-click="getProperties()" type="button" class="btn btn-primary">Hus / Villor  <span class="badge">{{antalVillor}}</span></button>
     </div>
   </div><br><br>
-  <p>
-    <!-- här ligger knappar som visar och bytar ut "showProperties" -->
-    <!-- <button id="testKnapp" ng-click="getProperties()" class="btn btn-primary btn-lg btn-block">Jag söker Hus/Villa 
-      <span class="pull-right"><span class="badge" style="text-align: right;" id="antalVillor"> </span> Lediga </span>
-    </button>
-    <button ng-click="getApartments()" class="btn btn-default btn-lg btn-block">Jag söker lägenhet
-      <span class="pull-right"><span class="badge" style="text-align: right;" id="antalLägenheter"> </span> Lediga </span>
-    </button><br> -->
-  </p>
-
-    <!-- alternativ sök knappar -->
-    <div class="row hidden">
-      <div class="col-md-24 col-lg-24">
-        <div class="input-group">
-          <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a ng-click="getAll()">Alla objekt</a></li>
-            <li role="presentation"><a ng-click="getProperties()">Jag söker Hus/Villa</a></li>
-            <li role="presentation"><a ng-click="getApartments()">Jag söker Lägenhet</a></li>
-          </ul>
-        </div><!-- /input-group -->
-      </div><!-- /.col-lg-6 -->
-    </div><!-- /.row -->
-
-      <div>
-        <div class="row">
-         <p> <span class="glyphicon glyphicon-sort-by-attributes"></span>  Visa fler sökalternativ  <input type="checkbox" ng-click="toggleDetailSearch()"></p> 
-        </div>
-      </div>
-
-
-
-
+  <!-- alternativ sök knappar -->
+  <div class="row hidden">
+    <div class="col-md-24 col-lg-24">
+      <div class="input-group">
+        <ul class="nav nav-pills">
+          <li role="presentation" class="active"><a ng-click="getAll()">Alla objekt</a></li>
+          <li role="presentation"><a ng-click="getProperties()">Jag söker Hus/Villa</a></li>
+          <li role="presentation"><a ng-click="getApartments()">Jag söker Lägenhet</a></li>
+        </ul>
+      </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </div><!-- /.row -->
+  
+  <div>
+    <div class="row">
+     <p> <span class="glyphicon glyphicon-sort-by-attributes"></span>  Visa fler sökalternativ  <input type="checkbox" ng-click="toggleDetailSearch()"></p> 
+    </div>
+  </div>
 
   <!-- mySearchControl som kollar efter ändringar i sökningen -->
   <div id="mySearchControl">
@@ -128,7 +91,6 @@
           </select>
         </div>
       </div>
-      
 
       <div class="col-xs-12 col-md-11 col-md-offset-1">
         <div class="row">
@@ -144,21 +106,10 @@
   </div><!-- mySearchControl -->
 </div><!-- mainContent -->
 
-
-
-
-
-</div><!-- Main-col -->
-
-
-
-
-
-
 <!-- mainContent med alla våra villor och lägenheter // ng-model="buyContent" property stuff-->
 <div class="col-xs-24 col-md-24 makeShadowBorder resultDivShadow">
    <!-- properties -->
-  <h1 id="typTitel">Resultatet gav {{ properties.length }} träffar</h1> 
+  <!-- <h1 id="typTitel">Resultatet gav {{ properties.length }} träffar</h1>  -->
     <div ng-repeat="property in properties" class="propertyDiv">
       <div class="list-group">
         <p class="list-group-item active">
@@ -171,7 +122,7 @@
                 <br>
                 <img ng-src="{{property.pic}}">
               </div>
-              <i> <b>ID:</b> {{property._id}} </i><br>
+              <!-- <i> <b>ID:</b> {{property._id}} </i><br> -->
           </div>
 
           <div class="col-xs-24 col-md-16 col-lg-16">
@@ -184,10 +135,8 @@
               <!-- <p>{{property.description}}<p> -->
             </p></span>
           </div>
-          
-
         </div><!-- .row -->
-        </a>
+        </a><!-- ng-click avslut -->
       </div><!-- list-group -->
     </div><!-- ng-repeat -->
   </div><!-- ng-hide -->
