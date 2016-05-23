@@ -1,3 +1,6 @@
+{
+	background-image: url(www/img/abc.jpg);
+}
 @font-face {
     font-family:Light;
     src: url(fonts/Light.ttf);
@@ -39,7 +42,14 @@ button{
 }
 
 .navbar-inverse{
+<<<<<<< HEAD
+	background-color: #1a53ff;
+}
+.navbar-nav>.navbar-brand{
+	color: red;
+=======
 	background-color:#292c2f;
+>>>>>>> 744b7d96319e6e69352559a6120d056386de4418
 }
 
 .navbar-inverse .navbar-nav>li>a{
