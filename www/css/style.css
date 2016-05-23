@@ -38,6 +38,10 @@ button{
 	color: gray;
 }
 
+.overlay h1{
+	font-size: 80px;
+}
+
 .navbar-inverse{
 	background-color:#292c2f;
 }
