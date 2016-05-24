@@ -46,10 +46,11 @@ button{
 }
 
 
-
+/*
 .navbar-brand{
   width: 100%;
 }
+*/
 .navbar-brand > img {
   width: 190px;
 }
