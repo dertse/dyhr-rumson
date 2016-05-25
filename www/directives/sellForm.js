@@ -4,6 +4,8 @@ app.directive('sellForm', [function() {
 		templateUrl: '/directives/sellForm.html',
 		controller: ['$scope', 'Property', function ($scope, Property) {
 
+			$scope.rooms = [1,2,3,4,5,6]
+
 			// fill dropdownmenu with img
 			$scope.imgUrls = [];
 			var apartments = [], houses = [];

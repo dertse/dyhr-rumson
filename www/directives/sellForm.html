@@ -13,13 +13,7 @@
 
     <div class="form-group col-xs-12 col-md-12">
       <label for="propertyRoom">Antal rum</label>
-      <select class="form-control" ng-model="newProp.room" required>
-        <option value="1" seleccted>1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
+      <select class="form-control" ng-model="newProp.room" ng-options="r for r in rooms" required>
       </select>
     </div>
   </div><!-- row -->
