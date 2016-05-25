@@ -2,10 +2,15 @@ app.directive('mainContent', [function(){
 
   return {
     templateUrl: '/directives/mainContent.html',
-    controller: ['$scope', function($scope) {
+    controller: ['$scope', 'Property', function ($scope, Property) {
 
-      var latest = [];
-      
+// work in progress
+/*      var temp = [], latestProp = [];
+
+      // get all properties
+      temp = Property.get();
+      console.log(Property.get())*/
+
 
       $scope.wells = $scope.myInterval = 5000;
 

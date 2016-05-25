@@ -5,7 +5,7 @@ app.directive('sellForm', [function() {
 		controller: ['$scope', 'Property', function ($scope, Property) {
 
 			// options for room select
-			$scope.rooms = [1,2,3,4,5,6]
+			$scope.rooms = [1,2,3,4,5,6];
 
 			// create img-url for dropdownmenu
 			$scope.imgUrls = [];
