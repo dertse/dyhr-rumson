@@ -6,9 +6,22 @@
 	background-size: cover;
 }
 
+
+
 .home {
 	padding: 0;
 	width: 100%;
+}
+
+.overlay { 
+  color:black;
+  position:absolute;
+  z-index:12;
+  top:50%;
+  left:0;
+  width:100%;
+  text-align:center;
+  font-family: bold;
 }
 
 
@@ -18,28 +31,39 @@
 
 /*senaste*/
 
+.ramen h1{
+	color: black;
 
+}
 
 .ram {
-
+	border-radius: 30px;
 	width: 350px;
 	border: 3px solid #777;
 	margin: 20px;
+	box-shadow: 3px 4px 20px #000;
 	
+}
+
+.ram h1, h3, p{
+	color: black;
 }
 
 .bilder {
 	width: 100%;
 	height: 250px;
 	margin-top: 10px;
+	border-radius: 10px;
+	box-shadow: 3px 3px 9px #000;
 	
 }
 
 .knapp {
 	float: right;
 	color: white;
-	background-color: green;
+	background-color: #333;
 	margin-right: 20px;
+	border-radius: 30px;
 }
 
 
@@ -197,7 +221,7 @@
 	margin-bottom: 5px;
 }
 
-/* If you don't want the footer to be responsive, remove these media queries */
+
 
 @media (max-width: 880px) {
 

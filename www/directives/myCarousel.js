@@ -16,7 +16,7 @@ app.directive('myCarousel', [function () {
           imageStyle: {
             'background-image': 'url(/img/vila%20' + (currIndex+1) + '/bild' + (currIndex+1) + '-1.jpg)'
           },
-          text: ['Nice image','Awesome photograph','That is so cool','I love that'][slides.length % 4],
+          text: [/*'Nice image','Awesome photograph','That is so cool','I love that'*/][slides.length % 4],
           id: currIndex
         });
         currIndex++;

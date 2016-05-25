@@ -1,3 +1,6 @@
+{
+	background-image: url(www/img/abc.jpg);
+}
 @font-face {
     font-family:Light;
     src: url(fonts/Light.ttf);
@@ -24,7 +27,7 @@ body{
 }
 
 h1{
-
+	color: black;
 	text-align: center;
 	text-shadow: 1px 2px 2px gray;
 }
@@ -38,7 +41,26 @@ button{
 	color: gray;
 }
 
+.overlay h1{
+	font-size: 80px;
+}
+
+
+/*
+.navbar-brand{
+  width: 100%;
+}
+*/
+.navbar-brand > img {
+  width: 190px;
+}
+
+
 .navbar-inverse{
+
+	background-color: #292C2F;
+}
+.navbar-nav>.navbar-brand{
 	background-color:#292c2f;
 }
 
@@ -139,3 +161,21 @@ overflow-x:visible !important;
 .resultDivShadow{
 	background-color: #EEEEEE;
 }
+
+
+  .bildstyle{
+
+    border-radius: 50%;
+    background: white; /*#8AC007;*/
+
+    padding: 5px; 
+    width: 150px;
+    height: 150px;
+    box-shadow: black 3px 2px;
+
+    -webkit-filter:grayscale(100%);
+    filter: grayscale(100%);
+
+  }
+  
+
