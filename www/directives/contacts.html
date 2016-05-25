@@ -1,3 +1,12 @@
+<script type='text/javascript'>
+  jQuery(document).ready(function($) {
+
+        $(".scroll").click(function(event){
+            event.preventDefault();
+            $('html,body').animate({scrollTop:$(this.hash).offset().top}, 1200);
+        });
+    });
+</script>
 <div class="container-fluid">
   <div class="row">
     <div id="spc" class="col-xs-24 col-md-offset-5 bot-margin text-cent">
@@ -9,14 +18,14 @@
         </strong>
         <span>
           Är du intresserad av ett särskilt bostadsområde eller hur en bostadsaffär går till rekommenderar vi att du
-          vänder dig till ett av våra <a href="#kont">kontor.</a>
+          vänder dig till ett av våra <a class="scroll" href="#kont">kontor.</a>
         </span>
         </br>
         <strong>
           </br>
           Praktik eller jobb
           </br>
-        </strong> 
+        </strong>
         <span>
         Du kontaktar då det aktuella kontoret. Här ser du våra <a href="https://www.youtube.com/watch?v=b3VvQxboeLo" target="_blank">lediga tjänster.</a>
         </span>
@@ -65,7 +74,8 @@
 
 <h1 class="topage-margin">Kontakta oss</h1>
 <div class="container-fluid">
-  <form name="myForm" ng-submit="submitCont()"> <!-- $scope is created only -->
+  <form name="myForm" ng-submit="submitCont()">
+    <!-- $scope is created only -->
 
     <h3 class="text-cent">Dina val</h3>
     <div class="row">
