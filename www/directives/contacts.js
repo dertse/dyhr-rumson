@@ -4,6 +4,14 @@ app.directive('contacts', [function () {
 		templateUrl: '/directives/contacts.html',
 		controller: ['$scope', '$location', '$resource', '$routeParams', function ($scope, $location, $resource, $routeParams) {
 
+			jQuery(document).ready(function($) {
+
+			      $(".scroll").click(function(event){
+			          event.preventDefault();
+			          $('html,body').animate({scrollTop:$(this.hash).offset().top}, 1200);
+			      });
+			 });
+
 			// -- Contact Scope -- //
 			// $scope.submitCont = function () {
 			// 	//create new Contact when form is submitted
