@@ -58,9 +58,9 @@
     <div class="form-group col-xs-12 col-md-12">
       <label for="propertyImage">Fastighets bild</label>
       <select class="form-control" ng-model="newProp.pic" id="propertyImage">
-        <div ng-repeat="imgUrl in imgUrls">
-          <option>{{imgUrl}}</option>
-        </div>
+        <option ng-repeat="imgUrl in imgUrls" value="{{imgUrl}}">
+          {{imgUrl}}
+        </option>
       </select>
     </div>
 

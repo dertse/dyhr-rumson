@@ -5,7 +5,7 @@ app.directive('sellForm', [function() {
 		controller: ['$scope', 'Property', function ($scope, Property) {
 
 			// fill dropdownmenu with img
-			$scope.urls = [];
+			$scope.imgUrls = [];
 			var apartments = [], houses = [];
 
 			(function (){
@@ -17,12 +17,12 @@ app.directive('sellForm', [function() {
 
 			$scope.update = function (){
 				if ($scope.newProp.type === "Lägenhet") {
-					$scope.urls = apartments;
+					$scope.imgUrls = apartments;
 				}
 				else if ($scope.newProp.type === "Villa") {
-					$scope.urls = houses;
+					$scope.imgUrls = houses;
 				}
-				console.log($scope.urls)
+				console.log($scope.imgUrls)
 			}
 
 
