@@ -92,7 +92,21 @@
         </div>
       </div>
 
+
       <div class="col-xs-12 col-md-11 col-md-offset-1">
+        <div class="row">
+          <h3>Sortering</h3>
+          <select class="form-control" ng-model="roomSort">
+            <option value="price,asc">Pris, lägst först</option>
+            <option value="price,desc">Pris, högst först</option>
+            <option value="size,asc">Storlek, minst först</option>
+            <option value="size,desc">Storlek, störst först</option>
+          </select>
+        </div>
+      </div><!-- .col -->
+
+
+      <div class="col-xs-12 col-md-24">
         <div class="row">
           <div>
             <h3>Resultat</h3>
@@ -101,7 +115,9 @@
             </div>
           </div>
         </div>
-      </div><!-- .col --> 
+      </div>
+
+
     </div><!-- .col Detaljerad sökning-->  
   </div><!-- mySearchControl -->
 </div><!-- mainContent -->

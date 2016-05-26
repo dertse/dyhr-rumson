@@ -93,6 +93,30 @@
 
 		console.log("$watchGroup watching scope props", toWatch);
 
+		// Basics of using JavaScript array sort
+		/*
+		var arr = [{firstName:"Daniel"},{firstName: "Alex"}];
+		arr.sort(function(item1,item2){
+			// We want to sort the array so that name are ascending (Alex first)
+			return item1.firstName > item2.firstName ? 1 : -1;
+		});
+		console.log(arr);
+		*/
+
+		function sort(){
+			if(!$scope.properties){return;}
+			var split = $scope.roomSort.split(",");
+			var sortParam = split[0];
+			var sortOrder = split[1];
+			console.log("sortParam",sortParam,"sortOrder",sortOrder);
+			$scope.properties.sort(function(propA,propB){
+				return propA[sortParam] < propB[sortParam] ? (sortOrder == "asc" ? -1 : 1) : (sortOrder == "asc" ? 1 : -1);
+			});
+		}
+		// when the user chooses a new sortOrder - re-sort
+		$scope.roomSort = "price,asc";
+		$scope.$watch("roomSort",sort);
+		
 
 		// sök mot databas
 		$scope.searchForProperties = function(){
@@ -118,7 +142,13 @@
 		  // Debug, check how the query looks
 		  console.log("QUERY", JSON.stringify(query,'','  '));
 		  // Query the database through a ngResource object
-		  $scope.properties = Property.get(query, propInfo);
+		  $scope.properties = Property.get(query, function(){
+		  	// when we recieve new data from mongo
+		  	// sort it by chosen roomtSort value
+		  	// and update propInfo
+		  	sort();
+		  	propInfo();
+		  });
 
 		}// END getTheData funktionen
 
