@@ -2,7 +2,7 @@ app.directive('contacts', [function () {
 
 	return {
 		templateUrl: '/directives/contacts.html',
-		controller: ['$scope', '$location', '$resource', '$routeParams', function ($scope, $location, $resource, $routeParams) {
+		controller: ['$scope', '$location', '$resource', '$routeParams', 'Contact', function ($scope, $location, $resource, $routeParams, Contact) {
 
 			jQuery(document).ready(function($) {
 
@@ -13,12 +13,12 @@ app.directive('contacts', [function () {
 			 });
 
 			// -- Contact Scope -- //
-			// $scope.submitCont = function () {
-			// 	//create new Contact when form is submitted
-			// 	Contact.create($scope.newCont);
-			// 	console.log($scope.newCont, "created")
-			// 	$scope.newCont = null;
-			// }
+			$scope.submitCont = function () {
+				//create new Contact when form is submitted
+				Contact.create($scope.newCont);
+				console.log($scope.newCont, "created")
+				$scope.newCont = null;
+			}
 
 			// Regions			
 			$scope.regions = [{

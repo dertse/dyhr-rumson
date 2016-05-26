@@ -23,11 +23,11 @@
         </br>
         <strong>
           </br>
-          Om Örjan
+          Om Dyhr-Rumson
           </br>
         </strong>
         <span>
-        Vid övergripande frågor kring Örjan och vår verksamhet - välkommen att kontakta oss på huvudkontoret. Du hittar
+        Vid övergripande frågor kring Dyhr-Rumson och vår verksamhet - välkommen att kontakta oss på huvudkontoret. Du hittar
         oss på Exempelgatan 0, Överallt.
         </span>
       </p>
@@ -50,10 +50,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-24 col-md-8 text-cent bot-margin" ng-repeat="office in offices">
-      <div class="col-xs-24 col-xs-offset" ng-mouseenter="showPic = 'img-conto'" ng-mouseleave="showPic = 'img-conto-hid'">
+      <div class="col-xs-24 col-xs-offset-1 col-sm-offset-5 col-md-8 col-md-offset-2" ng-mouseenter="showPic = 'img-conto'" ng-mouseleave="showPic = 'img-conto-hid'">
         <img class="img-conto-hid" ng-class="showPic" src="{{office.pic}}">
       </div>
-      <div ng-mouseenter="showPic = 'img-conto'" ng-mouseleave="showPic = 'img-conto-hid'" class="col-xs-24 col-sm-offset makeShadowBorder text-cent">
+      <div ng-mouseenter="showPic = 'img-conto'" ng-mouseleave="showPic = 'img-conto-hid'" class="col-xs-24 makeShadowBorder text-cent">
         <h3>{{office.location}}</h3>
         <p>{{office.adress}}</p>
         <p>{{office.email}}</p>
@@ -113,7 +113,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-xs-offset-9 col-md-12 col-md-offset-11">
+      <div class="form-group col-xs-offset-8 col-sm-offset-10 col-md-12 col-md-offset-11">
         <input type="submit" id="submit" value="Submit" />
       </div>
     </div>
