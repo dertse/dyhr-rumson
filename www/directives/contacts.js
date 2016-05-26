@@ -56,7 +56,7 @@ app.directive('contacts', [function () {
 				phone: "0000-00 00 00",
 				room: 9,
 				size: 325,
-				description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id gravida ligula. Nulla vel vestibulum nulla. Maecenas aliquam eros ac felis iaculis, ac blandit risus hendrerit. Mauris sed scelerisque mi. Ut magna mi, cursus ut porttitor a, condimentum blandit ipsum. Nulla aliquet iaculis nunc non vehicula. Sed id molestie sem, a tempor ipsum. Sed feugiat turpis in elit hendrerit gravida.",
+				description: "Lorem ipsum",
 				pic: "img/kontor/kontor1.jpg"
 			},
 				{
@@ -67,7 +67,7 @@ app.directive('contacts', [function () {
 					phone: "0000-00 00 00",
 					room: 8,
 					size: 245,
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id gravida ligula. Nulla vel vestibulum nulla. Maecenas aliquam eros ac felis iaculis, ac blandit risus hendrerit. Mauris sed scelerisque mi. Ut magna mi, cursus ut porttitor a, condimentum blandit ipsum. Nulla aliquet iaculis nunc non vehicula. Sed id molestie sem, a tempor ipsum. Sed feugiat turpis in elit hendrerit gravida.",
+					description: "Lorem ipsum",
 					pic: "img/kontor/kontor2.jpg"
 
 				},
@@ -79,7 +79,7 @@ app.directive('contacts', [function () {
 					phone: "0000-00 00 00",
 					room: 4,
 					size: 138,
-					description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id gravida ligula. Nulla vel vestibulum nulla. Maecenas aliquam eros ac felis iaculis, ac blandit risus hendrerit. Mauris sed scelerisque mi. Ut magna mi, cursus ut porttitor a, condimentum blandit ipsum. Nulla aliquet iaculis nunc non vehicula. Sed id molestie sem, a tempor ipsum. Sed feugiat turpis in elit hendrerit gravida.",
+					description: "Lorem ipsum",
 					pic: "img/kontor/kontor3.jpg"
 				}];
 
