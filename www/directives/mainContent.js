@@ -16,11 +16,14 @@ app.directive('mainContent', [function(){
         // get 3 random not unique properties
         for (var i = 0; i < 3; i++){
           // check if property have already been picked
-          var newProp = temp[Math.floor(Math.random()*temp.length)];
-          if (unique.indexOf(newProp) < 0) {
-            unique.push(newProp)
-            $scope.latestProps.push(newProp)
-          };
+          var newProp;
+          while (!newProp || unique.indexOf(newProp) >= 0) {
+            newProp = temp[Math.floor(Math.random()*temp.length)];
+          }
+          unique.push(newProp);
+          $scope.latestProps.push(newProp);
+          console.log(unique, $scope.latestProps)
+        
           
           // Since our adress property consists of both  adress and district
           // I want to split it up for display purposes
@@ -29,9 +32,14 @@ app.directive('mainContent', [function(){
           $scope.latestProps[i]["adress"] = adressString[0];
 
           // Check if district is empty or not
-          if (adressString[1] !== "" || adressString[1] !== 'undefined') {
-            $scope.latestProps[i]["district"] = adressString[1];
-          };
+          if (typeof adressString[1] === 'undefined' || adressString[1] === "") {
+
+            $scope.latestProps[i]["district"] = "Malmö";
+          }
+          else {
+            $scope.latestProps[i]["district"] = adressString[1] + ", Malmö";
+
+          }
 
           console.log(adress)
           console.log($scope.latestProp)
