@@ -5,17 +5,22 @@ app.directive('mainContent', [function(){
     controller: ['$scope', 'Property', function ($scope, Property) {
 
 
-      var temp = [], adress = "", district = "", adressString = "";
+
+      var temp = [], unique = [], adress = "", district = "", adressString = "";
       $scope.latestProps = [];
 
       // get all properties
       temp = Property.get(function(){
-        console.log(temp);
+        // console.log(temp);
 
         // get 3 random not unique properties
         for (var i = 0; i < 3; i++){
-
-          $scope.latestProps.push(temp[Math.floor(Math.random()*temp.length)])
+          // check if property have already been picked
+          var newProp = temp[Math.floor(Math.random()*temp.length)];
+          if (unique.indexOf(newProp) < 0) {
+            unique.push(newProp)
+            $scope.latestProps.push(newProp)
+          };
           
           // Since our adress property consists of both  adress and district
           // I want to split it up for display purposes
