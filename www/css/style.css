@@ -41,15 +41,27 @@ button{
 	color: gray;
 }
 
+.overlay h1{
+	font-size: 80px;
+}
+
+
+/*
+.navbar-brand{
+  width: 100%;
+}
+*/
+.navbar-brand > img {
+  width: 190px;
+}
+
+
 .navbar-inverse{
-<<<<<<< HEAD
-	background-color: #1a53ff;
+
+	background-color: #292C2F;
 }
 .navbar-nav>.navbar-brand{
-	color: red;
-=======
 	background-color:#292c2f;
->>>>>>> 744b7d96319e6e69352559a6120d056386de4418
 }
 
 .navbar-inverse .navbar-nav>li>a{
@@ -88,6 +100,10 @@ button{
 
 }
 
+.maklare{
+	
+	font-family: sans-serif;
+}
 
 .carousel-control.right,.carousel-control.left{
 	visibility: hidden;
@@ -149,3 +165,21 @@ overflow-x:visible !important;
 .resultDivShadow{
 	background-color: #EEEEEE;
 }
+
+
+  .bildstyle{
+
+    border-radius: 50%;
+    background: white; /*#8AC007;*/
+
+    padding: 5px; 
+    width: 150px;
+    height: 150px;
+    box-shadow: black 3px 2px;
+
+    -webkit-filter:grayscale(100%);
+    filter: grayscale(100%);
+
+  }
+  
+

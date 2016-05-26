@@ -1,10 +1,38 @@
-<div class="starter-template bot-margin">
-  <h1 class="top-margin">KONTAKT</h1>
-  <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet massa eu neque elementum eleifend. Donec
-    dignissim lectus augue, eu fringilla ipsum porta vitae. Etiam sollicitudin velit eu varius lacinia. Nullam vehicula egestas
-    nisi, vitae eleifend libero ornare vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-    himenaeos.
-  </p>
+<div class="container-fluid">
+  <div class="row">
+    <div id="spc" class="col-xs-24 col-md-offset-5 bot-margin text-cent">
+      <h1 class="topbot-margin">KONTAKT</h1>
+      <p class="lead">
+        <strong>
+          Bostadsfrågor
+          </br>
+        </strong>
+        <span>
+          Är du intresserad av ett särskilt bostadsområde eller hur en bostadsaffär går till rekommenderar vi att du
+          vänder dig till ett av våra <a class="scroll" href="#kont">kontor.</a>
+        </span>
+        </br>
+        <strong>
+          </br>
+          Praktik eller jobb
+          </br>
+        </strong>
+        <span>
+        Du kontaktar då det aktuella kontoret. Här ser du våra <a href="https://www.youtube.com/watch?v=b3VvQxboeLo" target="_blank">lediga tjänster.</a>
+        </span>
+        </br>
+        <strong>
+          </br>
+          Om Örjan
+          </br>
+        </strong>
+        <span>
+        Vid övergripande frågor kring Örjan och vår verksamhet - välkommen att kontakta oss på huvudkontoret. Du hittar
+        oss på Exempelgatan 0, Överallt.
+        </span>
+      </p>
+    </div>
+  </div>
 </div>
 
 <h1 class="topage-margin">Region</h1>
@@ -18,14 +46,15 @@
   </div>
 </div>
 
-<h1 class="topage-margin">Kontor</h1>
+<h1 id="kont" class="topage-margin">Kontor</h1>
 <div class="container-fluid">
   <div class="row">
     <div class="col-xs-24 col-md-8 text-cent bot-margin" ng-repeat="office in offices">
-      <h2>{{office.name}}</h2>
-      <img class="img-conto col-sm-offset" src="{{office.pic}}">
-      <div class="col-xs-24 col-sm-offset makeShadowBorder text-cent">
-        <p>{{office.location}}</p>
+      <div class="col-xs-24 col-xs-offset" ng-mouseenter="showPic = 'img-conto'" ng-mouseleave="showPic = 'img-conto-hid'">
+        <img class="img-conto-hid" ng-class="showPic" src="{{office.pic}}">
+      </div>
+      <div ng-mouseenter="showPic = 'img-conto'" ng-mouseleave="showPic = 'img-conto-hid'" class="col-xs-24 col-sm-offset makeShadowBorder text-cent">
+        <h3>{{office.location}}</h3>
         <p>{{office.adress}}</p>
         <p>{{office.email}}</p>
         <p>{{office.phone}}</p>
@@ -36,60 +65,61 @@
 
 <h1 class="topage-margin">Kontakta oss</h1>
 <div class="container-fluid">
-    <form name="myForm" ng-submit="submitCont()">
-      <!-- ng-controller="ExampleController" -->
+  <form name="myForm" ng-submit="submitCont()">
+    <!-- $scope is created only -->
 
-      <h3 class="text-cent">Dina val</h3>
-      <div class="row">
-        <div class="form-group col-xs-4 col-md-4 col-md-offset-10">
+    <h3 class="text-cent">Dina val</h3>
+    <div class="row">
+      <div class="form-group col-xs-12 col-xs-offset-6 col-md-4 col-md-offset-10">
 
-          <label for="contactRequest">Begäran</label>
-          <select class="form-control" ng-model="newCont.request" required>
+        <label for="contactRequest">Begäran</label>
+        <select class="form-control" ng-model="newCont.request" required>
             <option value="Köpa">Köpa</option>
             <option value="Sälja">Sälja</option>
             <option value="Övrigt">Övrigt</option>
           </select>
 
-          <label for="contactRegion">Region</label>
-          <select class="form-control" ng-model="newCont.region" required>
+        <label for="contactRegion">Region</label>
+        <select class="form-control" ng-model="newCont.region" required>
             <option ng-repeat="region in regions" value="{{region.location}}">{{region.location}}</option>
           </select>
 
-          <label for="contactEmployee">Mäklare</label>
-          <select class="form-control" ng-model="newCont.employee" required>
+        <label for="contactEmployee">Mäklare</label>
+        <select class="form-control" ng-model="newCont.employee" required>
             <option ng-repeat="employee in employees" value="{{employee.name}}">{{employee.name}}</option>
           </select>
 
-        </div>
       </div>
+    </div>
 
-      <h3 class="text-cent">Dina uppgifter</h3>
-      <div class="row">
-        <div class="form-group col-xs-12 col-md-12 col-md-offset-6">
-          <label for="contactName">Name</label>
-          <input type="text" class="form-control" name="myInput1" ng-model="newCont.name" id="contactName" placeholder="Namn" required>
-        </div>
+    <h3 class="text-cent">Dina uppgifter</h3>
+    <div class="row">
+      <div class="form-group col-xs-offset-1 col-md-12 col-md-offset-6">
+        <label for="contactName">Name</label>
+        <input type="text" class="form-control" name="myInput1" ng-model="newCont.name" id="contactName" placeholder="Namn" required>
       </div>
-      <div class="row">
-        <div class="form-group col-xs-12 col-md-12 col-md-offset-6">
-          <label for="contactEmail">E-post</label>
-          <input type="email" class="form-control" name="myInput2" ng-model="newCont.email" id="contactEmail" placeholder="E-post" required>
-        </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-offset-1 col-md-12 col-md-offset-6">
+        <label for="contactEmail">E-post</label>
+        <input type="email" class="form-control" name="myInput2" ng-model="newCont.email" id="contactEmail" placeholder="E-post"
+          required>
       </div>
-      <div class="row">
-        <div class="form-group col-xs-12 col-md-12 col-md-offset-6">
-          <label for="contactPhone">Telefon</label>
-          <input type="tel" class="form-control" name="myInput3" ng-model="newCont.phone" id="contactPhone" placeholder="Telefon" required>
-        </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-offset-1 col-md-12 col-md-offset-6">
+        <label for="contactPhone">Telefon</label>
+        <input type="tel" class="form-control" name="myInput3" ng-model="newCont.phone" id="contactPhone" placeholder="Telefon" required>
       </div>
-      <div class="row">
-        <div class="form-group col-xs-12 col-md-12 col-md-offset-11">
-          <input type="submit" id="submit" value="Submit" />
-        </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-xs-offset-9 col-md-12 col-md-offset-11">
+        <input type="submit" id="submit" value="Submit" />
       </div>
+    </div>
 
-    </form>
-  </div>
+  </form>
+</div>
 </div>
 
 <!--<h1>The input's valid state is:</h1>
